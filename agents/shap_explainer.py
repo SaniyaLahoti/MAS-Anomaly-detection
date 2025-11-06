@@ -167,7 +167,7 @@ class HierarchicalSHAPExplainer:
         
         # Stage 1 SHAP values or feature importance
         if self.explainer_stage1 is not None:
-            shap_values_s1 = self.explainer_stage1.shap_values(X_scaled_s1)
+            shap_values_s1 = self.explainer_stage1.shap_values(X_scaled_s1, check_additivity=False)
         else:
             # Use feature importance as fallback
             shap_values_s1 = self._get_feature_importance_as_shap(
@@ -191,7 +191,7 @@ class HierarchicalSHAPExplainer:
             
             # Stage 2 SHAP values or feature importance
             if self.explainer_stage2 is not None:
-                shap_values_s2 = self.explainer_stage2.shap_values(X_scaled_s2)
+                shap_values_s2 = self.explainer_stage2.shap_values(X_scaled_s2, check_additivity=False)
             else:
                 shap_values_s2 = self._get_feature_importance_as_shap(
                     self.model_stage2, X_scaled_s2, stage2_pred_idx

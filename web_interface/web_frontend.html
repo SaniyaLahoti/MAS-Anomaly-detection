@@ -5,150 +5,477 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi-Agent Network Anomaly Detection</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -30px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
+        }
+
+        @keyframes float2 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(-40px, 40px) rotate(-120deg);
+            }
+            66% {
+                transform: translate(30px, -20px) rotate(-240deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #0f172a, #1e1b4b, #312e81);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             min-height: 100vh;
             color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 50%);
+            animation: float2 25s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            padding: 3rem 2rem;
             text-align: center;
             color: white;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 0.8s ease;
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, #60a5fa, #a78bfa, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            letter-spacing: -0.5px;
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
         .status {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            margin: 1rem 0;
+            gap: 0.75rem;
+            margin: 1.5rem 0 0.5rem;
             font-weight: 600;
+            font-size: 1.1rem;
+            animation: fadeInUp 1s ease 0.4s both;
         }
 
         .status-dot {
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: #10b981;
-            box-shadow: 0 0 10px #10b981;
-            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px #10b981, 0 0 40px rgba(16, 185, 129, 0.5);
+            animation: pulse 2s infinite, rotate 3s linear infinite;
+            position: relative;
+        }
+
+        .status-dot::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            border: 2px solid #10b981;
+            animation: ripple 2s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(139, 92, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.4);
+            }
+        }
+
+        /* NEW: Split Layout Container */
+        .split-layout {
+            display: flex;
+            height: calc(100vh - 180px);
+            gap: 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* NEW: Main Content Area (65%) */
+        .main-content {
+            flex: 0 0 65%;
+            overflow-y: auto;
+            padding: 3rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        /* NEW: Chat Sidebar (35%) - Always visible */
+        .chat-sidebar {
+            flex: 0 0 35%;
+            position: sticky;
+            top: 0;
+            height: calc(100vh - 180px);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-left: 2px solid rgba(167, 139, 250, 0.3);
+            box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3), inset 0 0 60px rgba(139, 92, 246, 0.1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .chat-sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8b5cf6, #3b82f6, transparent);
+            animation: shimmer 3s infinite;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 16px;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 24px;
+            padding: 2.5rem;
             margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+                        0 0 0 1px rgba(255, 255, 255, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 2px solid;
+            border-image: linear-gradient(135deg, rgba(139, 92, 246, 0.5), rgba(59, 130, 246, 0.5), rgba(236, 72, 153, 0.5)) 1;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease both;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4),
+                        0 0 0 1px rgba(255, 255, 255, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card h2 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .presets {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
         .preset-btn {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
             color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .preset-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
         }
 
         .preset-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.6),
+                        0 0 30px rgba(139, 92, 246, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .preset-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .preset-btn:active {
+            transform: translateY(-3px) scale(1.01);
         }
 
         .input-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            position: relative;
         }
 
         .input-group label {
-            font-weight: 600;
-            color: #374151;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .input-group input, .input-group select {
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
+            padding: 1rem;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .input-group select {
+            cursor: pointer;
+        }
+
+        .input-group select option {
+            background: #1e1b4b;
+            color: white;
         }
 
         .input-group input:focus, .input-group select:focus {
             outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #8b5cf6;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2),
+                        0 0 20px rgba(139, 92, 246, 0.4),
+                        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .input-group input:hover, .input-group select:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .analyze-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, #10b981, #059669, #047857);
             color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 800;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
+            max-width: 450px;
+            margin: 1.5rem auto 0;
             display: block;
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4),
+                        0 0 30px rgba(16, 185, 129, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .analyze-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
         }
 
         .analyze-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(16, 185, 129, 0.6),
+                        0 0 50px rgba(16, 185, 129, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .analyze-btn:hover:not(:disabled)::before {
+            left: 100%;
+        }
+
+        .analyze-btn:active:not(:disabled) {
+            transform: translateY(-3px) scale(1);
         }
 
         .analyze-btn:disabled {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: not-allowed;
+            transform: none;
         }
 
         .results {
@@ -159,85 +486,166 @@
             display: block;
         }
 
-        /* Chat UI Styles */
+        /* NEW: Chat Section Styles for Sidebar */
         .chat-section {
-            display: none;
-            margin-top: 1rem;
-            border-top: 2px solid #e2e8f0;
-            padding-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 2.5rem;
+            /* Always visible - no display: none */
         }
 
         .chat-section.show {
-            display: block;
+            /* Keep same class for backward compatibility, but doesn't change display */
+            display: flex;
+        }
+
+        .chat-section h3 {
+            color: white;
+            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .chat-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .chat-messages {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 1rem;
-            max-height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            flex: 1;
             overflow-y: auto;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2),
+                        0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
         }
 
         .chat-message {
             margin-bottom: 1rem;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            animation: fadeIn 0.3s ease;
+            padding: 1rem 1.25rem;
+            border-radius: 16px;
+            animation: fadeIn 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .chat-message.user {
-            background: #3b82f6;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
-            margin-left: 20%;
+            margin-left: 15%;
+            border-bottom-right-radius: 6px;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
         }
 
         .chat-message.assistant {
-            background: white;
-            border: 1px solid #e2e8f0;
-            margin-right: 20%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            margin-right: 15%;
+            color: #1e1b4b;
+            border-bottom-left-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
         .chat-message.error {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            color: #dc2626;
+            background: linear-gradient(135deg, #fca5a5, #ef4444);
+            border: 2px solid rgba(220, 38, 38, 0.3);
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
         }
 
         .chat-input-group {
             display: flex;
-            gap: 0.5rem;
+            gap: 1rem;
         }
 
         .chat-input {
             flex: 1;
-            padding: 0.75rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
+            padding: 1.125rem 1.25rem;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .chat-input:focus {
             outline: none;
-            border-color: #3b82f6;
+            border-color: #8b5cf6;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2),
+                        0 0 20px rgba(139, 92, 246, 0.4),
+                        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
         }
 
         .chat-btn {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.125rem 2rem;
             cursor: pointer;
             font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        .chat-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        .chat-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .chat-btn:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.6),
+                        0 0 30px rgba(139, 92, 246, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .chat-btn:hover:not(:disabled)::before {
+            left: 100%;
         }
 
         .chat-btn:disabled {
@@ -247,83 +655,164 @@
 
         .chat-loading {
             display: inline-block;
-            padding: 0.75rem 1rem;
-            background: #f1f5f9;
-            border-radius: 8px;
-            color: #64748b;
+            padding: 1rem 1.5rem;
+            background: rgba(139, 92, 246, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            color: rgba(255, 255, 255, 0.9);
             font-style: italic;
+            border: 1px solid rgba(139, 92, 246, 0.3);
         }
 
         .prediction-card {
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            border-radius: 12px;
-            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2rem;
             margin-bottom: 2rem;
-            border-left: 4px solid #3b82f6;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4) 1;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
+                        0 0 30px rgba(139, 92, 246, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .prediction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4),
+                        0 0 50px rgba(139, 92, 246, 0.3);
         }
 
         .prediction-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .prediction-header h3 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .prediction-header p {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .threat-icon {
-            font-size: 2rem;
+            font-size: 3rem;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
         }
 
         .threat-level {
             margin-left: auto;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
             color: white;
-            font-weight: 700;
-            font-size: 0.9rem;
+            font-weight: 800;
+            font-size: 1rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .agents-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 1rem 0;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
         }
 
         .agent-card {
-            background: #f3f4f6;
-            border-radius: 8px;
-            padding: 1rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.75rem 1.5rem;
             text-align: center;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
+                        0 0 30px rgba(139, 92, 246, 0.3);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .agent-card h4 {
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .agent-card p {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .indicators-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
         }
 
         .indicator {
-            background: #f8fafc;
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 3px solid #3b82f6;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1));
+            backdrop-filter: blur(15px);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #06b6d4, #3b82f6) 1;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .indicator:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3),
+                        0 0 25px rgba(6, 182, 212, 0.3);
+        }
+
+        .indicator strong {
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 700;
         }
 
         .loading {
             text-align: center;
-            padding: 2rem;
-            color: #6b7280;
+            padding: 3rem 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .loading p {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .loading small {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #3b82f6;
+            border: 4px solid rgba(139, 92, 246, 0.2);
+            border-top: 4px solid #8b5cf6;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
         }
 
         @keyframes spin {
@@ -332,11 +821,63 @@
         }
 
         .error {
-            background: linear-gradient(135deg, #fee2e2, #fca5a5);
-            border-radius: 12px;
-            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
             text-align: center;
-            color: #991b1b;
+            color: #fca5a5;
+            border: 2px solid rgba(239, 68, 68, 0.4);
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+        }
+
+        .error h3 {
+            color: white;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Scrollbar styling */
+        .main-content::-webkit-scrollbar,
+        .chat-messages::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .main-content::-webkit-scrollbar-track,
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .main-content::-webkit-scrollbar-thumb,
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+
+        .main-content::-webkit-scrollbar-thumb:hover,
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #a78bfa, #60a5fa);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.7);
+        }
+
+        @media (max-width: 1024px) {
+            .split-layout {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .main-content {
+                flex: 1;
+            }
+
+            .chat-sidebar {
+                flex: 0 0 500px;
+                height: 500px;
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.3);
+            }
         }
 
         @media (max-width: 768px) {
@@ -350,6 +891,12 @@
             .threat-level {
                 margin-left: 0;
             }
+            .chat-message.user {
+                margin-left: 0;
+            }
+            .chat-message.assistant {
+                margin-right: 0;
+            }
         }
     </style>
 </head>
@@ -360,109 +907,122 @@
             <div class="status-dot"></div>
             <span id="systemStatus">System Online</span>
         </div>
-        <p>XGBoost + LSTM + Ensemble + SHAP + LLM</p>
+        <p style="color: rgba(255, 255, 255, 0.85); font-size: 1.1rem; font-weight: 500; margin-top: 0.5rem;">XGBoost + LSTM + Ensemble + SHAP + LLM</p>
     </div>
 
-    <div class="container">
-        <!-- Presets Section -->
-        <div class="card">
-            <h2>📋 Quick Presets</h2>
-            <div class="presets">
-                <button class="preset-btn" onclick="loadPreset('benign')">
-                    <strong>Benign Traffic</strong><br>
-                    <small>Normal network communication</small>
-                </button>
-                <button class="preset-btn" onclick="loadPreset('ddos')">
-                    <strong>DDoS Attack</strong><br>
-                    <small>Distributed Denial of Service</small>
-                </button>
-                <button class="preset-btn" onclick="loadPreset('dos')">
-                    <strong>DoS Attack</strong><br>
-                    <small>Denial of Service</small>
-                </button>
-                <button class="preset-btn" onclick="loadPreset('reconnaissance')">
-                    <strong>Port Scan</strong><br>
-                    <small>Network reconnaissance</small>
-                </button>
-                <button class="preset-btn" onclick="loadPreset('theft')">
-                    <strong>Data Theft</strong><br>
-                    <small>Data exfiltration</small>
-                </button>
+    <!-- NEW: Split Layout Container -->
+    <div class="split-layout">
+        <!-- NEW: Main Content Area (65%) -->
+        <div class="main-content">
+            <div class="container">
+                <!-- Presets Section -->
+                <div class="card">
+                    <h2>📋 Quick Presets</h2>
+                    <div class="presets">
+                        <button class="preset-btn" onclick="loadPreset('benign')">
+                            <strong>Benign Traffic</strong><br>
+                            <small>Normal network communication</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('ddos')">
+                            <strong>DDoS Attack</strong><br>
+                            <small>Distributed Denial of Service</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('dos')">
+                            <strong>DoS Attack</strong><br>
+                            <small>Denial of Service</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('reconnaissance')">
+                            <strong>Port Scan</strong><br>
+                            <small>Network reconnaissance</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('theft')">
+                            <strong>Data Theft</strong><br>
+                            <small>Data exfiltration</small>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Input Section -->
+                <div class="card">
+                    <h2>🔧 Network Flow Parameters</h2>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Protocol</label>
+                            <select id="protocol">
+                                <option value="6">TCP (6)</option>
+                                <option value="17">UDP (17)</option>
+                                <option value="1">ICMP (1)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>L7 Protocol</label>
+                            <input type="number" id="l7_proto" step="0.1" value="7.0">
+                        </div>
+                        <div class="input-group">
+                            <label>Source Port</label>
+                            <input type="number" id="l4_src_port" value="80">
+                        </div>
+                        <div class="input-group">
+                            <label>Destination Port</label>
+                            <input type="number" id="l4_dst_port" value="443">
+                        </div>
+                        <div class="input-group">
+                            <label>Incoming Bytes</label>
+                            <input type="number" id="in_bytes" value="1000">
+                        </div>
+                        <div class="input-group">
+                            <label>Incoming Packets</label>
+                            <input type="number" id="in_pkts" value="10">
+                        </div>
+                        <div class="input-group">
+                            <label>Outgoing Bytes</label>
+                            <input type="number" id="out_bytes" value="500">
+                        </div>
+                        <div class="input-group">
+                            <label>Outgoing Packets</label>
+                            <input type="number" id="out_pkts" value="5">
+                        </div>
+                        <div class="input-group">
+                            <label>TCP Flags</label>
+                            <input type="number" id="tcp_flags" value="2">
+                        </div>
+                        <div class="input-group">
+                            <label>Flow Duration (ms)</label>
+                            <input type="number" id="flow_duration_ms" value="1000">
+                        </div>
+                    </div>
+                    <button class="analyze-btn" onclick="analyzeFlow()" id="analyzeBtn">
+                        🎯 Analyze with Multi-Agent System
+                    </button>
+                </div>
+
+                <!-- Results Section -->
+                <div class="card results" id="results">
+                    <h2>📊 Analysis Results</h2>
+                    <div id="resultsContent"></div>
+                </div>
             </div>
         </div>
 
-        <!-- Input Section -->
-        <div class="card">
-            <h2>🔧 Network Flow Parameters</h2>
-            <div class="input-grid">
-                <div class="input-group">
-                    <label>Protocol</label>
-                    <select id="protocol">
-                        <option value="6">TCP (6)</option>
-                        <option value="17">UDP (17)</option>
-                        <option value="1">ICMP (1)</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>L7 Protocol</label>
-                    <input type="number" id="l7_proto" step="0.1" value="7.0">
-                </div>
-                <div class="input-group">
-                    <label>Source Port</label>
-                    <input type="number" id="l4_src_port" value="80">
-                </div>
-                <div class="input-group">
-                    <label>Destination Port</label>
-                    <input type="number" id="l4_dst_port" value="443">
-                </div>
-                <div class="input-group">
-                    <label>Incoming Bytes</label>
-                    <input type="number" id="in_bytes" value="1000">
-                </div>
-                <div class="input-group">
-                    <label>Incoming Packets</label>
-                    <input type="number" id="in_pkts" value="10">
-                </div>
-                <div class="input-group">
-                    <label>Outgoing Bytes</label>
-                    <input type="number" id="out_bytes" value="500">
-                </div>
-                <div class="input-group">
-                    <label>Outgoing Packets</label>
-                    <input type="number" id="out_pkts" value="5">
-                </div>
-                <div class="input-group">
-                    <label>TCP Flags</label>
-                    <input type="number" id="tcp_flags" value="2">
-                </div>
-                <div class="input-group">
-                    <label>Flow Duration (ms)</label>
-                    <input type="number" id="flow_duration_ms" value="1000">
-                </div>
-            </div>
-            <button class="analyze-btn" onclick="analyzeFlow()" id="analyzeBtn">
-                🎯 Analyze with Multi-Agent System
-            </button>
-        </div>
-
-        <!-- Results Section -->
-        <div class="card results" id="results">
-            <h2>📊 Analysis Results</h2>
-            <div id="resultsContent"></div>
-            
-            <!-- Chat Section (appears after results) -->
+        <!-- NEW: Chat Sidebar (35%) - Always visible on right -->
+        <div class="chat-sidebar">
+            <!-- Chat Section (moved from results card) -->
             <div class="chat-section" id="chatSection">
-                <h3>💬 Ask Questions About This Detection</h3>
-                <p style="color: #64748b; margin-bottom: 1rem; font-size: 0.9rem;">
-                    Ask the AI about why this prediction was made, what features matter most, or what actions to take.
+                <h3>💬 Ask Questions About Detection</h3>
+                <p>
+                    Ask the AI about why predictions were made, what features matter most, or what actions to take.
                 </p>
-                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-messages" id="chatMessages">
+                    <div style="text-align: center; color: #94a3b8; padding: 2rem;">
+                        Run an analysis to start chatting with the AI assistant about your results.
+                    </div>
+                </div>
                 <div class="chat-input-group">
-                    <input 
-                        type="text" 
-                        class="chat-input" 
-                        id="chatInput" 
-                        placeholder="E.g., Why was this detected as DDoS? What should I do?" 
+                    <input
+                        type="text"
+                        class="chat-input"
+                        id="chatInput"
+                        placeholder="E.g., Why was this detected as DDoS? What should I do?"
                         onkeypress="handleChatKeyPress(event)"
                     >
                     <button class="chat-btn" onclick="sendChatMessage()" id="chatBtn">
@@ -585,7 +1145,7 @@
 
         function displayResults(result) {
             const resultsContent = document.getElementById('resultsContent');
-            
+
             resultsContent.innerHTML = `
                 <!-- Main Prediction -->
                 <div class="prediction-card">
@@ -593,37 +1153,37 @@
                         <span class="threat-icon">${result.threat_assessment.icon}</span>
                         <div>
                             <h3>${result.prediction}</h3>
-                            <p style="margin: 0; color: #6b7280; font-weight: 600;">
+                            <p style="margin: 0; color: rgba(255, 255, 255, 0.9); font-weight: 700; font-size: 1.1rem;">
                                 Confidence: ${(result.confidence * 100).toFixed(1)}%
                             </p>
                         </div>
-                        <div class="threat-level" style="background-color: ${getThreatColor(result.threat_assessment.level)}">
+                        <div class="threat-level" style="background: linear-gradient(135deg, ${getThreatColor(result.threat_assessment.level)}, ${getThreatColor(result.threat_assessment.level)}dd);">
                             ${result.threat_assessment.level}
                         </div>
                     </div>
-                    <p style="color: #4b5563; margin: 0; font-size: 1.1rem;">
+                    <p style="color: rgba(255, 255, 255, 0.95); margin: 0; font-size: 1.15rem; font-weight: 500; line-height: 1.6;">
                         ${result.threat_assessment.description}
                     </p>
                 </div>
 
                 <!-- Agent Predictions -->
                 <div style="margin-bottom: 2rem;">
-                    <h3 style="color: #374151; margin-bottom: 1rem;">🤖 Agent Predictions</h3>
+                    <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.6rem; font-weight: 800; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);">🤖 Agent Predictions</h3>
                     <div class="agents-grid">
                         <div class="agent-card">
-                            <h4 style="margin: 0 0 0.5rem 0; color: #374151;">XGBoost Agent</h4>
-                            <p style="margin: 0.25rem 0; color: #6b7280;"><strong>${result.xgboost_prediction}</strong></p>
-                            <p style="margin: 0.25rem 0; color: #6b7280;">Confidence: ${(result.xgboost_confidence * 100).toFixed(1)}%</p>
+                            <h4 style="margin: 0 0 0.75rem 0;">XGBoost Agent</h4>
+                            <p style="margin: 0.5rem 0; font-size: 1.1rem;"><strong>${result.xgboost_prediction}</strong></p>
+                            <p style="margin: 0.5rem 0;">Confidence: ${(result.xgboost_confidence * 100).toFixed(1)}%</p>
                         </div>
                         <div class="agent-card">
-                            <h4 style="margin: 0 0 0.5rem 0; color: #374151;">LSTM Agent</h4>
-                            <p style="margin: 0.25rem 0; color: #6b7280;"><strong>${result.lstm_prediction}</strong></p>
-                            <p style="margin: 0.25rem 0; color: #6b7280;">Confidence: ${(result.lstm_confidence * 100).toFixed(1)}%</p>
+                            <h4 style="margin: 0 0 0.75rem 0;">LSTM Agent</h4>
+                            <p style="margin: 0.5rem 0; font-size: 1.1rem;"><strong>${result.lstm_prediction}</strong></p>
+                            <p style="margin: 0.5rem 0;">Confidence: ${(result.lstm_confidence * 100).toFixed(1)}%</p>
                         </div>
                     </div>
-                    <div style="text-align: center; padding: 1rem; background: #f9fafb; border-radius: 8px;">
-                        <strong>Agreement: </strong>
-                        <span style="color: ${result.agreement === 'FULL_AGREEMENT' ? '#10b981' : '#f59e0b'}; font-weight: 600;">
+                    <div style="text-align: center; padding: 1.5rem; background: rgba(59, 130, 246, 0.1); backdrop-filter: blur(10px); border-radius: 16px; border: 2px solid rgba(59, 130, 246, 0.3); margin-top: 1rem;">
+                        <strong style="color: white; font-size: 1.1rem;">Agreement: </strong>
+                        <span style="color: ${result.agreement === 'FULL_AGREEMENT' ? '#10b981' : '#f59e0b'}; font-weight: 700; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">
                             ${result.agreement.replace('_', ' ')}
                         </span>
                     </div>
@@ -631,7 +1191,7 @@
 
                 <!-- Key Indicators -->
                 <div style="margin-bottom: 2rem;">
-                    <h3 style="color: #374151; margin-bottom: 1rem;">🔍 Key Network Indicators</h3>
+                    <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.6rem; font-weight: 800; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);">🔍 Key Network Indicators</h3>
                     <div class="indicators-grid">
                         <div class="indicator">
                             <strong>Traffic Volume:</strong> ${result.key_indicators.traffic_volume}
@@ -652,14 +1212,14 @@
                 </div>
 
                 <!-- Action Recommendations -->
-                <div style="background: linear-gradient(135deg, #fef3c7, #fbbf24); border-radius: 12px; padding: 1.5rem; text-align: center;">
-                    <h3 style="margin: 0 0 1rem 0; color: #92400e;">⚡ Recommended Action</h3>
-                    <p style="margin: 0; color: #92400e; font-weight: 600; font-size: 1.1rem;">
+                <div style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.2)); backdrop-filter: blur(20px); border-radius: 20px; padding: 2rem; text-align: center; border: 2px solid rgba(251, 191, 36, 0.4); box-shadow: 0 15px 40px rgba(251, 191, 36, 0.3);">
+                    <h3 style="margin: 0 0 1rem 0; color: #fbbf24; font-size: 1.6rem; font-weight: 800; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);">⚡ Recommended Action</h3>
+                    <p style="margin: 0; color: white; font-weight: 700; font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">
                         ${result.threat_assessment.action}
                     </p>
                 </div>
             `;
-            
+
             // Show chat section and clear previous chat
             const chatSection = document.getElementById('chatSection');
             const chatMessages = document.getElementById('chatMessages');
@@ -685,13 +1245,13 @@
             const messagesDiv = document.getElementById('chatMessages');
             const chatBtn = document.getElementById('chatBtn');
             const message = input.value.trim();
-            
+
             if (!message) return;
-            
+
             // Display user message
             addChatMessage(message, 'user');
             input.value = '';
-            
+
             // Disable button and show loading
             chatBtn.disabled = true;
             const loadingDiv = document.createElement('div');
@@ -699,7 +1259,7 @@
             loadingDiv.textContent = 'AI is thinking...';
             messagesDiv.appendChild(loadingDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            
+
             try {
                 // Call chat API
                 const response = await fetch('http://localhost:8000/chat', {
@@ -709,18 +1269,18 @@
                     },
                     body: JSON.stringify({ message: message })
                 });
-                
+
                 const result = await response.json();
-                
+
                 // Remove loading
                 loadingDiv.remove();
-                
+
                 if (result.success) {
                     addChatMessage(result.response, 'assistant');
                 } else {
                     addChatMessage(result.error || 'Chat service unavailable', 'error');
                 }
-                
+
             } catch (error) {
                 loadingDiv.remove();
                 addChatMessage('Failed to connect to chat service: ' + error.message, 'error');

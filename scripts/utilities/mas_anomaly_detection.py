@@ -18,7 +18,12 @@ from llm_agent import LLMAgent
 from datetime import datetime
 import argparse
 import warnings
+import os
+from dotenv import load_dotenv
 warnings.filterwarnings('ignore')
+
+# Load environment variables from .env file
+load_dotenv()
 
 class MultiAgentAnomalyDetectionSystem:
     """
@@ -272,12 +277,15 @@ def main():
     
     args = parser.parse_args()
     
-    # Get API key
-    api_key = args.api_key or "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"
+    # Get API key from command line arg, environment variable, or .env file
+    api_key = args.api_key or os.getenv('OPENAI_API_KEY')
     
     if not api_key:
         print("ERROR: OpenAI API key required!")
-        print("Usage: python mas_anomaly_detection.py --api-key YOUR_KEY")
+        print("Please either:")
+        print("  1. Set OPENAI_API_KEY in your .env file")
+        print("  2. Set OPENAI_API_KEY environment variable")
+        print("  3. Use --api-key YOUR_KEY command line argument")
         return
     
     print("\n" + "=" * 80)

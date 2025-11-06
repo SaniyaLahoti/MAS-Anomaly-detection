@@ -6,6 +6,7 @@ Serves the React frontend and handles predictions
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import Optional
 import pandas as pd
 import numpy as np
 from interpreter_agent import InterpreterAgent
@@ -344,9 +345,9 @@ class ChatMessage(BaseModel):
 class ChatResponse(BaseModel):
     """Chat response model"""
     success: bool
-    response: str
+    response: str = ""
     timestamp: str
-    error: str = None
+    error: Optional[str] = None
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(chat_message: ChatMessage):

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Network Anomaly Detection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .presets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .preset-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .preset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .input-group input, .input-group select {
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .analyze-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .analyze-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .results {
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        /* Chat UI Styles */
+        .chat-section {
+            display: none;
+            margin-top: 1rem;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 1.5rem;
+        }
+
+        .chat-section.show {
+            display: block;
+        }
+
+        .chat-messages {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1rem;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .chat-message.user {
+            background: #3b82f6;
+            color: white;
+            margin-left: 20%;
+        }
+
+        .chat-message.assistant {
+            background: white;
+            border: 1px solid #e2e8f0;
+            margin-right: 20%;
+        }
+
+        .chat-message.error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+        }
+
+        .chat-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .chat-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .chat-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .chat-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .chat-loading {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            background: #f1f5f9;
+            border-radius: 8px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .prediction-card {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .prediction-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .threat-icon {
+            font-size: 2rem;
+        }
+
+        .threat-level {
+            margin-left: auto;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .agents-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .agent-card {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .indicators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .indicator {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: linear-gradient(135deg, #fee2e2, #fca5a5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #991b1b;
+        }
+
+        @media (max-width: 768px) {
+            .agents-grid {
+                grid-template-columns: 1fr;
+            }
+            .prediction-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .threat-level {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 Multi-Agent Network Anomaly Detection</h1>
+        <div class="status">
+            <div class="status-dot"></div>
+            <span id="systemStatus">System Online</span>
+        </div>
+        <p>XGBoost + LSTM + Ensemble + SHAP + LLM</p>
+    </div>
+
+    <div class="container">
+        <!-- Presets Section -->
+        <div class="card">
+            <h2>📋 Quick Presets</h2>
+            <div class="presets">
+                <button class="preset-btn" onclick="loadPreset('benign')">
+                    <strong>Benign Traffic</strong><br>
+                    <small>Normal network communication</small>
+                </button>
+                <button class="preset-btn" onclick="loadPreset('ddos')">
+                    <strong>DDoS Attack</strong><br>
+                    <small>Distributed Denial of Service</small>
+                </button>
+                <button class="preset-btn" onclick="loadPreset('dos')">
+                    <strong>DoS Attack</strong><br>
+                    <small>Denial of Service</small>
+                </button>
+                <button class="preset-btn" onclick="loadPreset('reconnaissance')">
+                    <strong>Port Scan</strong><br>
+                    <small>Network reconnaissance</small>
+                </button>
+                <button class="preset-btn" onclick="loadPreset('theft')">
+                    <strong>Data Theft</strong><br>
+                    <small>Data exfiltration</small>
+                </button>
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div class="card">
+            <h2>🔧 Network Flow Parameters</h2>
+            <div class="input-grid">
+                <div class="input-group">
+                    <label>Protocol</label>
+                    <select id="protocol">
+                        <option value="6">TCP (6)</option>
+                        <option value="17">UDP (17)</option>
+                        <option value="1">ICMP (1)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>L7 Protocol</label>
+                    <input type="number" id="l7_proto" step="0.1" value="7.0">
+                </div>
+                <div class="input-group">
+                    <label>Source Port</label>
+                    <input type="number" id="l4_src_port" value="80">
+                </div>
+                <div class="input-group">
+                    <label>Destination Port</label>
+                    <input type="number" id="l4_dst_port" value="443">
+                </div>
+                <div class="input-group">
+                    <label>Incoming Bytes</label>
+                    <input type="number" id="in_bytes" value="1000">
+                </div>
+                <div class="input-group">
+                    <label>Incoming Packets</label>
+                    <input type="number" id="in_pkts" value="10">
+                </div>
+                <div class="input-group">
+                    <label>Outgoing Bytes</label>
+                    <input type="number" id="out_bytes" value="500">
+                </div>
+                <div class="input-group">
+                    <label>Outgoing Packets</label>
+                    <input type="number" id="out_pkts" value="5">
+                </div>
+                <div class="input-group">
+                    <label>TCP Flags</label>
+                    <input type="number" id="tcp_flags" value="2">
+                </div>
+                <div class="input-group">
+                    <label>Flow Duration (ms)</label>
+                    <input type="number" id="flow_duration_ms" value="1000">
+                </div>
+            </div>
+            <button class="analyze-btn" onclick="analyzeFlow()" id="analyzeBtn">
+                🎯 Analyze with Multi-Agent System
+            </button>
+        </div>
+
+        <!-- Results Section -->
+        <div class="card results" id="results">
+            <h2>📊 Analysis Results</h2>
+            <div id="resultsContent"></div>
+            
+            <!-- Chat Section (appears after results) -->
+            <div class="chat-section" id="chatSection">
+                <h3>💬 Ask Questions About This Detection</h3>
+                <p style="color: #64748b; margin-bottom: 1rem; font-size: 0.9rem;">
+                    Ask the AI about why this prediction was made, what features matter most, or what actions to take.
+                </p>
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input-group">
+                    <input 
+                        type="text" 
+                        class="chat-input" 
+                        id="chatInput" 
+                        placeholder="E.g., Why was this detected as DDoS? What should I do?" 
+                        onkeypress="handleChatKeyPress(event)"
+                    >
+                    <button class="chat-btn" onclick="sendChatMessage()" id="chatBtn">
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // REAL attack samples from NF-BoT-IoT dataset - VERIFIED TO WORK!
+        const presets = {
+            benign: {
+                protocol: 17, l7_proto: 5.212, l4_src_port: 52670, l4_dst_port: 53,
+                in_bytes: 71, in_pkts: 1, out_bytes: 126, out_pkts: 1,
+                tcp_flags: 0, flow_duration_ms: 4294966
+            },
+            ddos: {
+                protocol: 6, l7_proto: 7.0, l4_src_port: 54238, l4_dst_port: 80,
+                in_bytes: 714, in_pkts: 5, out_bytes: 710, out_pkts: 4,
+                tcp_flags: 27, flow_duration_ms: 4288872
+            },
+            dos: {
+                protocol: 6, l7_proto: 7.0, l4_src_port: 54242, l4_dst_port: 80,
+                in_bytes: 780, in_pkts: 5, out_bytes: 710, out_pkts: 4,
+                tcp_flags: 27, flow_duration_ms: 4288865
+            },
+            reconnaissance: {
+                protocol: 6, l7_proto: 7.0, l4_src_port: 54256, l4_dst_port: 80,
+                in_bytes: 616, in_pkts: 5, out_bytes: 710, out_pkts: 4,
+                tcp_flags: 27, flow_duration_ms: 4288852
+            },
+            theft: {
+                protocol: 6, l7_proto: 0.0, l4_src_port: 49160, l4_dst_port: 4444,
+                in_bytes: 217753000, in_pkts: 4521, out_bytes: 199100, out_pkts: 4049,
+                tcp_flags: 24, flow_duration_ms: 4176249
+            }
+        };
+
+        function loadPreset(presetName) {
+            const preset = presets[presetName];
+            if (preset) {
+                Object.keys(preset).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        element.value = preset[key];
+                    }
+                });
+            }
+        }
+
+        function getThreatColor(level) {
+            const colors = {
+                'LOW': '#10b981',
+                'MEDIUM': '#f59e0b',
+                'HIGH': '#ef4444',
+                'CRITICAL': '#dc2626'
+            };
+            return colors[level] || '#6b7280';
+        }
+
+        async function analyzeFlow() {
+            const btn = document.getElementById('analyzeBtn');
+            const results = document.getElementById('results');
+            const resultsContent = document.getElementById('resultsContent');
+
+            // Disable button and show loading
+            btn.disabled = true;
+            btn.innerHTML = '🔄 Analyzing...';
+            results.classList.add('show');
+            resultsContent.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Multi-Agent System analyzing network flow...</p>
+                    <p><small>XGBoost + LSTM + Ensemble + SHAP</small></p>
+                </div>
+            `;
+
+            try {
+                // Collect form data
+                const flowData = {
+                    protocol: parseInt(document.getElementById('protocol').value),
+                    l7_proto: parseFloat(document.getElementById('l7_proto').value),
+                    l4_src_port: parseInt(document.getElementById('l4_src_port').value),
+                    l4_dst_port: parseInt(document.getElementById('l4_dst_port').value),
+                    in_bytes: parseInt(document.getElementById('in_bytes').value),
+                    in_pkts: parseInt(document.getElementById('in_pkts').value),
+                    out_bytes: parseInt(document.getElementById('out_bytes').value),
+                    out_pkts: parseInt(document.getElementById('out_pkts').value),
+                    tcp_flags: parseInt(document.getElementById('tcp_flags').value),
+                    flow_duration_ms: parseInt(document.getElementById('flow_duration_ms').value)
+                };
+
+                // Call API
+                const response = await fetch('http://localhost:8000/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(flowData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    displayResults(result);
+                } else {
+                    displayError(result.error || 'Analysis failed');
+                }
+
+            } catch (error) {
+                displayError('Failed to connect to Multi-Agent System: ' + error.message);
+            }
+
+            // Re-enable button
+            btn.disabled = false;
+            btn.innerHTML = '🎯 Analyze with Multi-Agent System';
+        }
+
+        function displayResults(result) {
+            const resultsContent = document.getElementById('resultsContent');
+            
+            resultsContent.innerHTML = `
+                <!-- Main Prediction -->
+                <div class="prediction-card">
+                    <div class="prediction-header">
+                        <span class="threat-icon">${result.threat_assessment.icon}</span>
+                        <div>
+                            <h3>${result.prediction}</h3>
+                            <p style="margin: 0; color: #6b7280; font-weight: 600;">
+                                Confidence: ${(result.confidence * 100).toFixed(1)}%
+                            </p>
+                        </div>
+                        <div class="threat-level" style="background-color: ${getThreatColor(result.threat_assessment.level)}">
+                            ${result.threat_assessment.level}
+                        </div>
+                    </div>
+                    <p style="color: #4b5563; margin: 0; font-size: 1.1rem;">
+                        ${result.threat_assessment.description}
+                    </p>
+                </div>
+
+                <!-- Agent Predictions -->
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: #374151; margin-bottom: 1rem;">🤖 Agent Predictions</h3>
+                    <div class="agents-grid">
+                        <div class="agent-card">
+                            <h4 style="margin: 0 0 0.5rem 0; color: #374151;">XGBoost Agent</h4>
+                            <p style="margin: 0.25rem 0; color: #6b7280;"><strong>${result.xgboost_prediction}</strong></p>
+                            <p style="margin: 0.25rem 0; color: #6b7280;">Confidence: ${(result.xgboost_confidence * 100).toFixed(1)}%</p>
+                        </div>
+                        <div class="agent-card">
+                            <h4 style="margin: 0 0 0.5rem 0; color: #374151;">LSTM Agent</h4>
+                            <p style="margin: 0.25rem 0; color: #6b7280;"><strong>${result.lstm_prediction}</strong></p>
+                            <p style="margin: 0.25rem 0; color: #6b7280;">Confidence: ${(result.lstm_confidence * 100).toFixed(1)}%</p>
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: #f9fafb; border-radius: 8px;">
+                        <strong>Agreement: </strong>
+                        <span style="color: ${result.agreement === 'FULL_AGREEMENT' ? '#10b981' : '#f59e0b'}; font-weight: 600;">
+                            ${result.agreement.replace('_', ' ')}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Key Indicators -->
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: #374151; margin-bottom: 1rem;">🔍 Key Network Indicators</h3>
+                    <div class="indicators-grid">
+                        <div class="indicator">
+                            <strong>Traffic Volume:</strong> ${result.key_indicators.traffic_volume}
+                        </div>
+                        <div class="indicator">
+                            <strong>Data Rate:</strong> ${result.key_indicators.data_rate}
+                        </div>
+                        <div class="indicator">
+                            <strong>Protocol:</strong> ${result.key_indicators.protocol}
+                        </div>
+                        <div class="indicator">
+                            <strong>Duration:</strong> ${result.key_indicators.duration}
+                        </div>
+                        <div class="indicator">
+                            <strong>Intensity:</strong> ${result.key_indicators.traffic_intensity}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Recommendations -->
+                <div style="background: linear-gradient(135deg, #fef3c7, #fbbf24); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <h3 style="margin: 0 0 1rem 0; color: #92400e;">⚡ Recommended Action</h3>
+                    <p style="margin: 0; color: #92400e; font-weight: 600; font-size: 1.1rem;">
+                        ${result.threat_assessment.action}
+                    </p>
+                </div>
+            `;
+            
+            // Show chat section and clear previous chat
+            const chatSection = document.getElementById('chatSection');
+            const chatMessages = document.getElementById('chatMessages');
+            chatSection.classList.add('show');
+            chatMessages.innerHTML = '';  // Clear previous chat
+        }
+
+        function displayError(error) {
+            const resultsContent = document.getElementById('resultsContent');
+            const chatSection = document.getElementById('chatSection');
+            chatSection.classList.remove('show');  // Hide chat on error
+            resultsContent.innerHTML = `
+                <div class="error">
+                    <h3>❌ Analysis Failed</h3>
+                    <p>${error}</p>
+                </div>
+            `;
+        }
+
+        // Chat functions
+        async function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const messagesDiv = document.getElementById('chatMessages');
+            const chatBtn = document.getElementById('chatBtn');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Display user message
+            addChatMessage(message, 'user');
+            input.value = '';
+            
+            // Disable button and show loading
+            chatBtn.disabled = true;
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'chat-loading';
+            loadingDiv.textContent = 'AI is thinking...';
+            messagesDiv.appendChild(loadingDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            
+            try {
+                // Call chat API
+                const response = await fetch('http://localhost:8000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+                
+                const result = await response.json();
+                
+                // Remove loading
+                loadingDiv.remove();
+                
+                if (result.success) {
+                    addChatMessage(result.response, 'assistant');
+                } else {
+                    addChatMessage(result.error || 'Chat service unavailable', 'error');
+                }
+                
+            } catch (error) {
+                loadingDiv.remove();
+                addChatMessage('Failed to connect to chat service: ' + error.message, 'error');
+            } finally {
+                chatBtn.disabled = false;
+            }
+        }
+
+        function addChatMessage(text, type) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${type}`;
+            messageDiv.textContent = text;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+
+        // Load default preset on page load
+        window.onload = function() {
+            loadPreset('ddos');
+        };
+    </script>
+</body>
+</html>
