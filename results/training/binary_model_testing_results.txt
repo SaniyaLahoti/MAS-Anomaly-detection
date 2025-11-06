@@ -1,0 +1,26 @@
+================================================================================
+XGBOOST BINARY MODEL - COMPREHENSIVE TESTING RESULTS
+================================================================================
+
+PRIMARY METRICS
+--------------------------------------------------------------------------------
+Accuracy:           0.9782 (97.82%)
+Precision:          0.9985
+Recall:             0.9578
+F1-Score:           0.9777
+ROC-AUC:            0.9956
+
+ADDITIONAL METRICS
+--------------------------------------------------------------------------------
+Matthews Correlation Coefficient: 0.9571
+Cohen's Kappa Score:              0.9563
+Specificity:                      0.9985
+False Positive Rate:              0.0015
+False Negative Rate:              0.0422
+
+CONFUSION MATRIX
+--------------------------------------------------------------------------------
+True Negatives:  35953
+False Positives: 53
+False Negatives: 1520
+True Positives:  34486

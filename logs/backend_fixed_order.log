@@ -1,0 +1,95 @@
+INFO:     Started server process [12199]
+INFO:     Waiting for application startup.
+WARNING:absl:Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+WARNING:absl:Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+🚀 Starting Multi-Agent Anomaly Detection API...
+🚀 Initializing Multi-Agent System...
+================================================================================
+INTERPRETER AGENT - INITIALIZING ENSEMBLE SYSTEM
+================================================================================
+
+🤖 AGENT 1: XGBoost + SHAP
+--------------------------------------------------------------------------------
+================================================================================
+SHAP EXPLAINABILITY SYSTEM - LOADING MODELS
+================================================================================
+✅ Stage 1 model loaded (4-class classification)
+✅ Stage 2 model loaded (DDoS vs DoS binary)
+✅ Scalers and encoders loaded
+✅ Feature names loaded: 23 features
+
+📊 Classes:
+  Stage 1: ['Benign', 'DOS', 'Reconnaissance', 'Theft']
+  Stage 2: ['DDoS', 'DoS']
+
+================================================================================
+CREATING SHAP EXPLAINERS
+================================================================================
+
+🔧 Creating Stage 1 SHAP explainer...
+⚠️  Using alternative explainer method for Stage 1: could not convert string to float: '[2.5E-1,2.5E-1...
+
+🔧 Creating Stage 2 SHAP explainer...
+⚠️  Using alternative explainer method for Stage 2: could not convert string to float: '[5E-1]'...
+✅ XGBoost Agent ready
+
+🤖 AGENT 2: LSTM + SHAP
+--------------------------------------------------------------------------------
+================================================================================
+LSTM SHAP EXPLAINABILITY SYSTEM - LOADING MODELS
+================================================================================
+✅ Stage 1 LSTM model loaded
+✅ Stage 2 LSTM model loaded
+✅ Scalers and encoders loaded
+✅ Feature names loaded: 23 features
+
+📊 Classes:
+  Stage 1: ['Benign', 'DOS', 'Reconnaissance', 'Theft']
+  Stage 2: ['DDoS', 'DoS']
+
+================================================================================
+CREATING LSTM SHAP DEEP EXPLAINERS
+================================================================================
+
+🔧 Creating Stage 1 GradientExplainer...
+✅ Stage 1 GradientExplainer ready
+
+🔧 Creating Stage 2 GradientExplainer...
+✅ Stage 2 GradientExplainer ready
+✅ LSTM Agent ready
+
+================================================================================
+✅ ENSEMBLE SYSTEM INITIALIZED
+================================================================================
+✅ Multi-Agent System ready!
+INFO:     127.0.0.1:54028 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54032 - "GET / HTTP/1.1" 200 OK
+
+================================================================================
+ENSEMBLE PREDICTION & INTERPRETATION
+================================================================================
+
+🤖 Agent 1 (XGBoost) analyzing...
+   XGBoost: Theft (99.8%)
+
+🤖 Agent 2 (LSTM) analyzing...
+🔍 Computing Stage 1 SHAP values...
+INFO:     127.0.0.1:54034 - "POST /predict HTTP/1.1" 200 OK
+
+================================================================================
+ENSEMBLE PREDICTION & INTERPRETATION
+================================================================================
+
+🤖 Agent 1 (XGBoost) analyzing...
+   XGBoost: DDoS (51.0%)
+
+🤖 Agent 2 (LSTM) analyzing...
+🔍 Computing Stage 1 SHAP values...
+🔍 Computing Stage 2 SHAP values...
+INFO:     127.0.0.1:54065 - "POST /predict HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [12199]

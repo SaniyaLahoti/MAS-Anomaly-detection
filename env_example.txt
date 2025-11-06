@@ -1,0 +1,12 @@
+# OpenAI API Key Configuration
+# 
+# 1. Create a file named '.env' in the project root directory
+# 2. Add the following line with your actual API key:
+#    OPENAI_API_KEY=your_openai_api_key_here
+# 
+# Get your API key from: https://platform.openai.com/api-keys
+# 
+# The .env file is gitignored for security
+
+OPENAI_API_KEY=your_openai_api_key_here
+

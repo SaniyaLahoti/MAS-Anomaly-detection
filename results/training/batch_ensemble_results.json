@@ -1,0 +1,814 @@
+[
+  {
+    "timestamp": "2025-11-05 22:08:59",
+    "ensemble_decision": {
+      "final_prediction": "Benign",
+      "confidence": 0.8472861647605896,
+      "agreement": "FULL_AGREEMENT",
+      "confidence_level": "HIGH"
+    },
+    "actual_label": "Reconnaissance",
+    "correct": false,
+    "agent_predictions": {
+      "xgboost": {
+        "prediction": "Benign",
+        "confidence": 0.8659353256225586,
+        "model_type": "XGBoost"
+      },
+      "lstm": {
+        "prediction": "Benign",
+        "confidence": 0.8286370038986206,
+        "model_type": "LSTM"
+      }
+    },
+    "metadata": {
+      "source_ip": "192.168.1.10",
+      "affected_assets": "Server-1",
+      "protocol": 17.0,
+      "dest_port": 51554.0,
+      "packet_rate": 1.0,
+      "byte_rate": 28.0,
+      "flow_duration": 0.0,
+      "tcp_flags": 0.0
+    },
+    "evidence": {
+      "agreement_status": "FULL_AGREEMENT",
+      "key_indicators": {
+        "traffic_volume": "1.00 packets/ms",
+        "data_rate": "28.00 bytes/ms",
+        "duration": "0 ms",
+        "protocol": "UDP",
+        "tcp_flags": 0,
+        "destination_port": 51554,
+        "traffic_intensity": "LOW (Normal)"
+      },
+      "xgboost_evidence": {
+        "model": "XGBoost",
+        "prediction": "Benign",
+        "confidence": 0.8659353256225586,
+        "top_5_features": [
+          {
+            "feature": "PROTOCOL",
+            "value": 17.0,
+            "shap_impact": 0.5919675282929894,
+            "direction": "PUSHES TOWARDS"
+          },
+          {
+            "feature": "PROTOCOL_PORT_COMBO",
+            "value": 876418.0,
+            "shap_impact": 0.4183456797509296,
+            "direction": "PUSHES TOWARDS"
+          },
+          {
+            "feature": "L4_DST_PORT",
+            "value": 51554.0,
+            "shap_impact": 0.08066130885116868,
+            "direction": "PUSHES TOWARDS"
+          },
+          {
+            "feature": "TCP_FLAGS",
+            "value": 0.0,
+            "shap_impact": -0.06311332413288892,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "BYTE_ASYMMETRY",
+            "value": 0.9655172413793104,
+            "shap_impact": 0.029699829267385715,
+            "direction": "PUSHES TOWARDS"
+          }
+        ],
+        "used_two_stage": false
+      },
+      "lstm_evidence": {
+        "model": "LSTM",
+        "prediction": "Benign",
+        "confidence": 0.8286370038986206,
+        "top_5_features": [
+          {
+            "feature": "PROTOCOL",
+            "value": 17.0,
+            "shap_impact": 0.0072057219222188,
+            "direction": "PUSHES TOWARDS"
+          },
+          {
+            "feature": "L4_SRC_PORT",
+            "value": 50343.0,
+            "shap_impact": -0.007194723933935165,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "L4_DST_PORT",
+            "value": 51554.0,
+            "shap_impact": -1.1103680662927218e-05,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "L7_PROTO",
+            "value": 0.0,
+            "shap_impact": 1.160931262234044e-07,
+            "direction": "PUSHES TOWARDS"
+          }
+        ],
+        "used_two_stage": false
+      },
+      "combined_top_features": [
+        {
+          "feature": "PROTOCOL",
+          "value": 17.0,
+          "xgboost_shap": 0.5919675282929894,
+          "lstm_shap": 0.0072057219222188,
+          "both_agree": true,
+          "average_importance": 0.2995866251076041
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": 51554.0,
+          "xgboost_shap": 0.08066130885116868,
+          "lstm_shap": -1.1103680662927218e-05,
+          "both_agree": false,
+          "average_importance": 0.0403362062659158
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": 0.0,
+          "xgboost_shap": -0.013284564222176724,
+          "lstm_shap": 1.160931262234044e-07,
+          "both_agree": false,
+          "average_importance": 0.0066423401576514735
+        }
+      ]
+    },
+    "shap_explanations": {
+      "xgboost": {
+        "prediction": "Benign",
+        "confidence": 0.8659353256225586,
+        "actual_label": "Reconnaissance",
+        "correct": false,
+        "reasoning": "\ud83c\udfaf CLASSIFICATION: Benign (86.6% confidence)\n\n\ud83d\udcca STAGE 1 ANALYSIS (Attack Category Detection):\n   Detected as: Benign (86.6% confidence)\n\n   \ud83d\udd0d Key Evidence:\n   1. PROTOCOL = 17.0000\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 Impact strength: 0.5920\n   2. PROTOCOL_PORT_COMBO = 876418.0000\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 Impact strength: 0.4183\n   3. L4_DST_PORT = 51554.0000\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 Impact strength: 0.0807\n   4. TCP_FLAGS = 0.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 Impact strength: 0.0631\n   5. BYTE_ASYMMETRY = 0.9655\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 Impact strength: 0.0297\n\n\u2705 PROOF SUMMARY:\n   \ud83d\udfe2 BENIGN TRAFFIC INDICATORS:\n      \u2022 Normal protocol usage (Protocol: 17)\n      \u2022 Balanced bidirectional flow (In: 1, Out: 0)\n      \u2022 Moderate packet rate (1.00 pkts/ms)\n      \u2022 No anomalous patterns detected",
+        "stage1": {
+          "predicted_class": "Benign",
+          "confidence": 0.8659353256225586,
+          "top_features": [
+            {
+              "feature": "PROTOCOL",
+              "value": 17.0,
+              "shap_value": 0.5919675282929894,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.5919675282929894
+            },
+            {
+              "feature": "PROTOCOL_PORT_COMBO",
+              "value": 876418.0,
+              "shap_value": 0.4183456797509296,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.4183456797509296
+            },
+            {
+              "feature": "L4_DST_PORT",
+              "value": 51554.0,
+              "shap_value": 0.08066130885116868,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.08066130885116868
+            },
+            {
+              "feature": "TCP_FLAGS",
+              "value": 0.0,
+              "shap_value": -0.06311332413288892,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.06311332413288892
+            },
+            {
+              "feature": "BYTE_ASYMMETRY",
+              "value": 0.9655172413793104,
+              "shap_value": 0.029699829267385715,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.029699829267385715
+            },
+            {
+              "feature": "L7_PROTO",
+              "value": 0.0,
+              "shap_value": -0.013284564222176724,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.013284564222176724
+            },
+            {
+              "feature": "FLOW_DURATION_MILLISECONDS",
+              "value": 0.0,
+              "shap_value": -0.005704543884938735,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.005704543884938735
+            },
+            {
+              "feature": "PACKET_ASYMMETRY",
+              "value": 0.5,
+              "shap_value": 0.004147738372996569,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.004147738372996569
+            },
+            {
+              "feature": "TCP_PACKET_INTERACTION",
+              "value": 0.0,
+              "shap_value": -0.003748111674601486,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.003748111674601486
+            },
+            {
+              "feature": "OUT_PKTS",
+              "value": 0.0,
+              "shap_value": -0.0036243270133992428,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.0036243270133992428
+            }
+          ]
+        }
+      },
+      "lstm": {
+        "model_type": "LSTM",
+        "prediction": "Benign",
+        "confidence": 0.8286370038986206,
+        "actual_label": "Reconnaissance",
+        "correct": false,
+        "reasoning": "\ud83c\udfaf LSTM CLASSIFICATION: Benign (82.9% confidence)\n\n\ud83d\udcca STAGE 1 ANALYSIS (LSTM):\n   Detected as: Benign (82.9% confidence)\n\n   \ud83d\udd0d Key LSTM-Learned Patterns:\n   1. PROTOCOL = 17.0000\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 LSTM Impact: 0.0072\n   2. L4_SRC_PORT = 50343.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 LSTM Impact: 0.0072\n   3. L4_DST_PORT = 51554.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 LSTM Impact: 0.0000\n   4. L7_PROTO = 0.0000\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 LSTM Impact: 0.0000\n\n\u2705 LSTM MODEL EVIDENCE:\n   \ud83d\udfe2 LSTM DETECTED BENIGN PATTERNS:\n      \u2022 Normal protocol sequences (Protocol: 17)\n      \u2022 Balanced traffic flow patterns\n      \u2022 LSTM recognized normal behavior sequences",
+        "stage1": {
+          "predicted_class": "Benign",
+          "confidence": 0.8286370038986206,
+          "top_features": [
+            {
+              "feature": "PROTOCOL",
+              "value": 17.0,
+              "shap_value": 0.0072057219222188,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.0072057219222188
+            },
+            {
+              "feature": "L4_SRC_PORT",
+              "value": 50343.0,
+              "shap_value": -0.007194723933935165,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.007194723933935165
+            },
+            {
+              "feature": "L4_DST_PORT",
+              "value": 51554.0,
+              "shap_value": -1.1103680662927218e-05,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 1.1103680662927218e-05
+            },
+            {
+              "feature": "L7_PROTO",
+              "value": 0.0,
+              "shap_value": 1.160931262234044e-07,
+              "impact": "PUSHES TOWARDS",
+              "importance": 1.160931262234044e-07
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2025-11-05 22:09:01",
+    "ensemble_decision": {
+      "final_prediction": "Benign",
+      "confidence": 0.850534200668335,
+      "agreement": "FULL_AGREEMENT",
+      "confidence_level": "HIGH"
+    },
+    "actual_label": "Reconnaissance",
+    "correct": false,
+    "agent_predictions": {
+      "xgboost": {
+        "prediction": "Benign",
+        "confidence": 0.8680891990661621,
+        "model_type": "XGBoost"
+      },
+      "lstm": {
+        "prediction": "Benign",
+        "confidence": 0.8329792022705078,
+        "model_type": "LSTM"
+      }
+    },
+    "metadata": {
+      "source_ip": "192.168.1.11",
+      "affected_assets": "Server-2",
+      "protocol": 17.0,
+      "dest_port": 1081.0,
+      "packet_rate": 1.0,
+      "byte_rate": 28.0,
+      "flow_duration": 0.0,
+      "tcp_flags": 0.0
+    },
+    "evidence": {
+      "agreement_status": "FULL_AGREEMENT",
+      "key_indicators": {
+        "traffic_volume": "1.00 packets/ms",
+        "data_rate": "28.00 bytes/ms",
+        "duration": "0 ms",
+        "protocol": "UDP",
+        "tcp_flags": 0,
+        "destination_port": 1081,
+        "traffic_intensity": "LOW (Normal)"
+      },
+      "xgboost_evidence": {
+        "model": "XGBoost",
+        "prediction": "Benign",
+        "confidence": 0.8680891990661621,
+        "top_5_features": [
+          {
+            "feature": "PROTOCOL",
+            "value": 17.0,
+            "shap_impact": 0.5919675282929894,
+            "direction": "PUSHES TOWARDS"
+          },
+          {
+            "feature": "TCP_FLAGS",
+            "value": 0.0,
+            "shap_impact": -0.06311332413288892,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "BYTE_ASYMMETRY",
+            "value": 0.9655172413793104,
+            "shap_impact": 0.029699829267385715,
+            "direction": "PUSHES TOWARDS"
+          },
+          {
+            "feature": "PROTOCOL_PORT_COMBO",
+            "value": 18377.0,
+            "shap_impact": -0.01710866844191238,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "L7_PROTO",
+            "value": 0.0,
+            "shap_impact": -0.013284564222176724,
+            "direction": "PUSHES AWAY FROM"
+          }
+        ],
+        "used_two_stage": false
+      },
+      "lstm_evidence": {
+        "model": "LSTM",
+        "prediction": "Benign",
+        "confidence": 0.8329792022705078,
+        "top_5_features": [
+          {
+            "feature": "PROTOCOL",
+            "value": 17.0,
+            "shap_impact": 0.021815087646245956,
+            "direction": "PUSHES TOWARDS"
+          },
+          {
+            "feature": "L4_SRC_PORT",
+            "value": 34407.0,
+            "shap_impact": -0.021186985075473785,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "L4_DST_PORT",
+            "value": 1081.0,
+            "shap_impact": -0.0006233611493371427,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "L7_PROTO",
+            "value": 0.0,
+            "shap_impact": -4.7504540816589724e-06,
+            "direction": "PUSHES AWAY FROM"
+          }
+        ],
+        "used_two_stage": false
+      },
+      "combined_top_features": [
+        {
+          "feature": "PROTOCOL",
+          "value": 17.0,
+          "xgboost_shap": 0.5919675282929894,
+          "lstm_shap": 0.021815087646245956,
+          "both_agree": true,
+          "average_importance": 0.30689130796961767
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": 0.0,
+          "xgboost_shap": -0.013284564222176724,
+          "lstm_shap": -4.7504540816589724e-06,
+          "both_agree": true,
+          "average_importance": 0.006644657338129191
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": 1081.0,
+          "xgboost_shap": -0.008252749486390862,
+          "lstm_shap": -0.0006233611493371427,
+          "both_agree": true,
+          "average_importance": 0.004438055317864002
+        }
+      ]
+    },
+    "shap_explanations": {
+      "xgboost": {
+        "prediction": "Benign",
+        "confidence": 0.8680891990661621,
+        "actual_label": "Reconnaissance",
+        "correct": false,
+        "reasoning": "\ud83c\udfaf CLASSIFICATION: Benign (86.8% confidence)\n\n\ud83d\udcca STAGE 1 ANALYSIS (Attack Category Detection):\n   Detected as: Benign (86.8% confidence)\n\n   \ud83d\udd0d Key Evidence:\n   1. PROTOCOL = 17.0000\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 Impact strength: 0.5920\n   2. TCP_FLAGS = 0.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 Impact strength: 0.0631\n   3. BYTE_ASYMMETRY = 0.9655\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 Impact strength: 0.0297\n   4. PROTOCOL_PORT_COMBO = 18377.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 Impact strength: 0.0171\n   5. L7_PROTO = 0.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 Impact strength: 0.0133\n\n\u2705 PROOF SUMMARY:\n   \ud83d\udfe2 BENIGN TRAFFIC INDICATORS:\n      \u2022 Normal protocol usage (Protocol: 17)\n      \u2022 Balanced bidirectional flow (In: 1, Out: 0)\n      \u2022 Moderate packet rate (1.00 pkts/ms)\n      \u2022 No anomalous patterns detected",
+        "stage1": {
+          "predicted_class": "Benign",
+          "confidence": 0.8680891990661621,
+          "top_features": [
+            {
+              "feature": "PROTOCOL",
+              "value": 17.0,
+              "shap_value": 0.5919675282929894,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.5919675282929894
+            },
+            {
+              "feature": "TCP_FLAGS",
+              "value": 0.0,
+              "shap_value": -0.06311332413288892,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.06311332413288892
+            },
+            {
+              "feature": "BYTE_ASYMMETRY",
+              "value": 0.9655172413793104,
+              "shap_value": 0.029699829267385715,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.029699829267385715
+            },
+            {
+              "feature": "PROTOCOL_PORT_COMBO",
+              "value": 18377.0,
+              "shap_value": -0.01710866844191238,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.01710866844191238
+            },
+            {
+              "feature": "L7_PROTO",
+              "value": 0.0,
+              "shap_value": -0.013284564222176724,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.013284564222176724
+            },
+            {
+              "feature": "L4_DST_PORT",
+              "value": 1081.0,
+              "shap_value": -0.008252749486390862,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.008252749486390862
+            },
+            {
+              "feature": "FLOW_DURATION_MILLISECONDS",
+              "value": 0.0,
+              "shap_value": -0.005704543884938735,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.005704543884938735
+            },
+            {
+              "feature": "PACKET_ASYMMETRY",
+              "value": 0.5,
+              "shap_value": 0.004147738372996569,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.004147738372996569
+            },
+            {
+              "feature": "TCP_PACKET_INTERACTION",
+              "value": 0.0,
+              "shap_value": -0.003748111674601486,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.003748111674601486
+            },
+            {
+              "feature": "OUT_PKTS",
+              "value": 0.0,
+              "shap_value": -0.0036243270133992428,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.0036243270133992428
+            }
+          ]
+        }
+      },
+      "lstm": {
+        "model_type": "LSTM",
+        "prediction": "Benign",
+        "confidence": 0.8329792022705078,
+        "actual_label": "Reconnaissance",
+        "correct": false,
+        "reasoning": "\ud83c\udfaf LSTM CLASSIFICATION: Benign (83.3% confidence)\n\n\ud83d\udcca STAGE 1 ANALYSIS (LSTM):\n   Detected as: Benign (83.3% confidence)\n\n   \ud83d\udd0d Key LSTM-Learned Patterns:\n   1. PROTOCOL = 17.0000\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 LSTM Impact: 0.0218\n   2. L4_SRC_PORT = 34407.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 LSTM Impact: 0.0212\n   3. L4_DST_PORT = 1081.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 LSTM Impact: 0.0006\n   4. L7_PROTO = 0.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 LSTM Impact: 0.0000\n\n\u2705 LSTM MODEL EVIDENCE:\n   \ud83d\udfe2 LSTM DETECTED BENIGN PATTERNS:\n      \u2022 Normal protocol sequences (Protocol: 17)\n      \u2022 Balanced traffic flow patterns\n      \u2022 LSTM recognized normal behavior sequences",
+        "stage1": {
+          "predicted_class": "Benign",
+          "confidence": 0.8329792022705078,
+          "top_features": [
+            {
+              "feature": "PROTOCOL",
+              "value": 17.0,
+              "shap_value": 0.021815087646245956,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.021815087646245956
+            },
+            {
+              "feature": "L4_SRC_PORT",
+              "value": 34407.0,
+              "shap_value": -0.021186985075473785,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.021186985075473785
+            },
+            {
+              "feature": "L4_DST_PORT",
+              "value": 1081.0,
+              "shap_value": -0.0006233611493371427,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.0006233611493371427
+            },
+            {
+              "feature": "L7_PROTO",
+              "value": 0.0,
+              "shap_value": -4.7504540816589724e-06,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 4.7504540816589724e-06
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2025-11-05 22:09:02",
+    "ensemble_decision": {
+      "final_prediction": "Benign",
+      "confidence": 0.8613476753234863,
+      "agreement": "FULL_AGREEMENT",
+      "confidence_level": "HIGH"
+    },
+    "actual_label": "Benign",
+    "correct": true,
+    "agent_predictions": {
+      "xgboost": {
+        "prediction": "Benign",
+        "confidence": 0.8099384903907776,
+        "model_type": "XGBoost"
+      },
+      "lstm": {
+        "prediction": "Benign",
+        "confidence": 0.9127568602561951,
+        "model_type": "LSTM"
+      }
+    },
+    "metadata": {
+      "source_ip": "192.168.1.12",
+      "affected_assets": "Server-3",
+      "protocol": 6.0,
+      "dest_port": 1.0,
+      "packet_rate": 4.656612109799188e-07,
+      "byte_rate": 1.8626448439196754e-05,
+      "flow_duration": 4294967.0,
+      "tcp_flags": 20.0
+    },
+    "evidence": {
+      "agreement_status": "FULL_AGREEMENT",
+      "key_indicators": {
+        "traffic_volume": "0.00 packets/ms",
+        "data_rate": "0.00 bytes/ms",
+        "duration": "4294967 ms",
+        "protocol": "TCP",
+        "tcp_flags": 20,
+        "destination_port": 1,
+        "traffic_intensity": "LOW (Normal)"
+      },
+      "xgboost_evidence": {
+        "model": "XGBoost",
+        "prediction": "Benign",
+        "confidence": 0.8099384903907776,
+        "top_5_features": [
+          {
+            "feature": "L7_PROTO",
+            "value": 238.0,
+            "shap_impact": 0.1741915667018783,
+            "direction": "PUSHES TOWARDS"
+          },
+          {
+            "feature": "PROTOCOL",
+            "value": 6.0,
+            "shap_impact": -0.09706166300805666,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "PROTOCOL_PORT_COMBO",
+            "value": 6.0,
+            "shap_impact": -0.02643191969756415,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "BYTE_ASYMMETRY",
+            "value": 0.0,
+            "shap_impact": -0.01871798823546621,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "L4_SRC_PORT",
+            "value": 1469.0,
+            "shap_impact": -0.010308650504141348,
+            "direction": "PUSHES AWAY FROM"
+          }
+        ],
+        "used_two_stage": false
+      },
+      "lstm_evidence": {
+        "model": "LSTM",
+        "prediction": "Benign",
+        "confidence": 0.9127568602561951,
+        "top_5_features": [
+          {
+            "feature": "L4_SRC_PORT",
+            "value": 1469.0,
+            "shap_impact": 0.3640058636665344,
+            "direction": "PUSHES TOWARDS"
+          },
+          {
+            "feature": "PROTOCOL",
+            "value": 6.0,
+            "shap_impact": -0.30450639128685,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "L7_PROTO",
+            "value": 238.0,
+            "shap_impact": -0.05953802168369293,
+            "direction": "PUSHES AWAY FROM"
+          },
+          {
+            "feature": "L4_DST_PORT",
+            "value": 1.0,
+            "shap_impact": 3.859965727315284e-05,
+            "direction": "PUSHES TOWARDS"
+          }
+        ],
+        "used_two_stage": false
+      },
+      "combined_top_features": [
+        {
+          "feature": "PROTOCOL",
+          "value": 6.0,
+          "xgboost_shap": -0.09706166300805666,
+          "lstm_shap": -0.30450639128685,
+          "both_agree": true,
+          "average_importance": 0.2007840271474533
+        },
+        {
+          "feature": "L4_SRC_PORT",
+          "value": 1469.0,
+          "xgboost_shap": -0.010308650504141348,
+          "lstm_shap": 0.3640058636665344,
+          "both_agree": false,
+          "average_importance": 0.1871572570853379
+        },
+        {
+          "feature": "L7_PROTO",
+          "value": 238.0,
+          "xgboost_shap": 0.1741915667018783,
+          "lstm_shap": -0.05953802168369293,
+          "both_agree": false,
+          "average_importance": 0.11686479419278561
+        },
+        {
+          "feature": "L4_DST_PORT",
+          "value": 1.0,
+          "xgboost_shap": -0.010155295065305613,
+          "lstm_shap": 3.859965727315284e-05,
+          "both_agree": false,
+          "average_importance": 0.005096947361289383
+        }
+      ]
+    },
+    "shap_explanations": {
+      "xgboost": {
+        "prediction": "Benign",
+        "confidence": 0.8099384903907776,
+        "actual_label": "Benign",
+        "correct": true,
+        "reasoning": "\ud83c\udfaf CLASSIFICATION: Benign (81.0% confidence)\n\n\ud83d\udcca STAGE 1 ANALYSIS (Attack Category Detection):\n   Detected as: Benign (81.0% confidence)\n\n   \ud83d\udd0d Key Evidence:\n   1. L7_PROTO = 238.0000\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 Impact strength: 0.1742\n   2. PROTOCOL = 6.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 Impact strength: 0.0971\n   3. PROTOCOL_PORT_COMBO = 6.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 Impact strength: 0.0264\n   4. BYTE_ASYMMETRY = 0.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 Impact strength: 0.0187\n   5. L4_SRC_PORT = 1469.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 Impact strength: 0.0103\n\n\u2705 PROOF SUMMARY:\n   \ud83d\udfe2 BENIGN TRAFFIC INDICATORS:\n      \u2022 Normal protocol usage (Protocol: 6)\n      \u2022 Balanced bidirectional flow (In: 1, Out: 1)\n      \u2022 Moderate packet rate (0.00 pkts/ms)\n      \u2022 No anomalous patterns detected",
+        "stage1": {
+          "predicted_class": "Benign",
+          "confidence": 0.8099384903907776,
+          "top_features": [
+            {
+              "feature": "L7_PROTO",
+              "value": 238.0,
+              "shap_value": 0.1741915667018783,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.1741915667018783
+            },
+            {
+              "feature": "PROTOCOL",
+              "value": 6.0,
+              "shap_value": -0.09706166300805666,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.09706166300805666
+            },
+            {
+              "feature": "PROTOCOL_PORT_COMBO",
+              "value": 6.0,
+              "shap_value": -0.02643191969756415,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.02643191969756415
+            },
+            {
+              "feature": "BYTE_ASYMMETRY",
+              "value": 0.0,
+              "shap_value": -0.01871798823546621,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.01871798823546621
+            },
+            {
+              "feature": "L4_SRC_PORT",
+              "value": 1469.0,
+              "shap_value": -0.010308650504141348,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.010308650504141348
+            },
+            {
+              "feature": "L4_DST_PORT",
+              "value": 1.0,
+              "shap_value": -0.010155295065305613,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.010155295065305613
+            },
+            {
+              "feature": "PROTOCOL_INTENSITY",
+              "value": 2.793967265879513e-06,
+              "shap_value": -0.004065636294258315,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.004065636294258315
+            },
+            {
+              "feature": "OUT_PKTS",
+              "value": 1.0,
+              "shap_value": -0.0035670345311039427,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.0035670345311039427
+            },
+            {
+              "feature": "TCP_PACKET_INTERACTION",
+              "value": 20.0,
+              "shap_value": -0.00353119822658824,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.00353119822658824
+            },
+            {
+              "feature": "PACKET_ASYMMETRY",
+              "value": 0.0,
+              "shap_value": -0.002738058735039356,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.002738058735039356
+            }
+          ]
+        }
+      },
+      "lstm": {
+        "model_type": "LSTM",
+        "prediction": "Benign",
+        "confidence": 0.9127568602561951,
+        "actual_label": "Benign",
+        "correct": true,
+        "reasoning": "\ud83c\udfaf LSTM CLASSIFICATION: Benign (91.3% confidence)\n\n\ud83d\udcca STAGE 1 ANALYSIS (LSTM):\n   Detected as: Benign (91.3% confidence)\n\n   \ud83d\udd0d Key LSTM-Learned Patterns:\n   1. L4_SRC_PORT = 1469.0000\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 LSTM Impact: 0.3640\n   2. PROTOCOL = 6.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 LSTM Impact: 0.3045\n   3. L7_PROTO = 238.0000\n      \u2192 LOWER value PUSHES AWAY FROM Benign\n      \u2192 LSTM Impact: 0.0595\n   4. L4_DST_PORT = 1.0000\n      \u2192 HIGHER value PUSHES TOWARDS Benign\n      \u2192 LSTM Impact: 0.0000\n\n\u2705 LSTM MODEL EVIDENCE:\n   \ud83d\udfe2 LSTM DETECTED BENIGN PATTERNS:\n      \u2022 Normal protocol sequences (Protocol: 6)\n      \u2022 Balanced traffic flow patterns\n      \u2022 LSTM recognized normal behavior sequences",
+        "stage1": {
+          "predicted_class": "Benign",
+          "confidence": 0.9127568602561951,
+          "top_features": [
+            {
+              "feature": "L4_SRC_PORT",
+              "value": 1469.0,
+              "shap_value": 0.3640058636665344,
+              "impact": "PUSHES TOWARDS",
+              "importance": 0.3640058636665344
+            },
+            {
+              "feature": "PROTOCOL",
+              "value": 6.0,
+              "shap_value": -0.30450639128685,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.30450639128685
+            },
+            {
+              "feature": "L7_PROTO",
+              "value": 238.0,
+              "shap_value": -0.05953802168369293,
+              "impact": "PUSHES AWAY FROM",
+              "importance": 0.05953802168369293
+            },
+            {
+              "feature": "L4_DST_PORT",
+              "value": 1.0,
+              "shap_value": 3.859965727315284e-05,
+              "impact": "PUSHES TOWARDS",
+              "importance": 3.859965727315284e-05
+            }
+          ]
+        }
+      }
+    }
+  }
+]

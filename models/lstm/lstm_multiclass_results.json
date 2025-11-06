@@ -1,0 +1,47 @@
+{
+    "overall_metrics": {
+        "accuracy_mean": 0.76315,
+        "accuracy_std": 0.0013787675656179426,
+        "precision_mean": 0.7286074979214877,
+        "precision_std": 0.047539904803007266,
+        "recall_mean": 0.76315,
+        "recall_std": 0.0013787675656179426,
+        "f1_mean": 0.7373049642260736,
+        "f1_std": 0.031191640240137167
+    },
+    "per_class_metrics": {
+        "Benign": {
+            "precision": 0.9222149936041497,
+            "recall": 0.9926999999999999,
+            "f1_score": 0.9561553505787599
+        },
+        "DDoS": {
+            "precision": 0.3836029188319143,
+            "recall": 0.49899999999999994,
+            "f1_score": 0.42344989016846635
+        },
+        "DoS": {
+            "precision": 0.39025512643914395,
+            "recall": 0.47735000000000005,
+            "f1_score": 0.41644761115639906
+        },
+        "Reconnaissance": {
+            "precision": 0.9929819010712073,
+            "recall": 0.8469999999999999,
+            "f1_score": 0.9141718021280532
+        },
+        "Theft": {
+            "precision": 0.953982549661023,
+            "recall": 0.9997,
+            "f1_score": 0.9763001670986892
+        }
+    },
+    "training_time": 259.41278409957886,
+    "classes": [
+        "Benign",
+        "DDoS",
+        "DoS",
+        "Reconnaissance",
+        "Theft"
+    ]
+}

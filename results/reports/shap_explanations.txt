@@ -1,0 +1,2163 @@
+================================================================================
+SHAP EXPLANATIONS FOR ATTACK CLASSIFICATIONS
+================================================================================
+
+
+================================================================================
+SAMPLE 1: Benign → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (99.9% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (99.9% confidence)
+
+   🔍 Key Evidence:
+   1. L7_PROTO = 222.1780
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.1617
+   2. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0971
+   3. BYTE_ASYMMETRY = 0.8968
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0263
+   4. TCP_FLAGS = 24.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0158
+   5. AVG_IN_PACKET_SIZE = 860.8000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0066
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 6)
+      • Balanced bidirectional flow (In: 9, Out: 9)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 2: Benign → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 17.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.5920
+   2. TCP_FLAGS = 0.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0631
+   3. BYTE_ASYMMETRY = 0.9933
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0311
+   4. PROTOCOL_PORT_COMBO = 901.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0260
+   5. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0133
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 17)
+      • Balanced bidirectional flow (In: 2, Out: 0)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 3: Benign → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 17.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.5920
+   2. IN_OUT_PACKET_RATIO = 9076.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.3341
+   3. IN_BYTES = 8584699.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.1136
+   4. IN_PKTS = 9076.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.1031
+   5. IN_OUT_BYTE_RATIO = 8584699.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0887
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 17)
+      • Balanced bidirectional flow (In: 9076, Out: 0)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 4: Benign → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 17.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.5920
+   2. TCP_FLAGS = 0.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0631
+   3. PROTOCOL_PORT_COMBO = 901.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0260
+   4. L4_DST_PORT = 53.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0101
+   5. BYTE_ASYMMETRY = 0.5687
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0098
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 17)
+      • Balanced bidirectional flow (In: 1, Out: 1)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 5: Benign → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (99.8% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (99.8% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0971
+   2. PROTOCOL_PORT_COMBO = 204348.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0773
+   3. L4_DST_PORT = 34058.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0498
+   4. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0389
+   5. L4_SRC_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0107
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 6)
+      • Balanced bidirectional flow (In: 4, Out: 5)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 6: Benign → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 17.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.5920
+   2. TCP_FLAGS = 0.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0631
+   3. PROTOCOL_PORT_COMBO = 901.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0260
+   4. L4_DST_PORT = 53.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0101
+   5. BYTE_ASYMMETRY = 0.5687
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0098
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 17)
+      • Balanced bidirectional flow (In: 1, Out: 1)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 7: Benign → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 17.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.5920
+   2. TCP_FLAGS = 0.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0631
+   3. BYTE_ASYMMETRY = 0.9933
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0311
+   4. PROTOCOL_PORT_COMBO = 901.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0260
+   5. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0133
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 17)
+      • Balanced bidirectional flow (In: 2, Out: 0)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 8: Benign → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 17.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.5920
+   2. TCP_FLAGS = 0.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0631
+   3. BYTE_ASYMMETRY = 0.9933
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0311
+   4. PROTOCOL_PORT_COMBO = 901.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0260
+   5. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0133
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 17)
+      • Balanced bidirectional flow (In: 2, Out: 0)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 9: Benign → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (98.9% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (98.9% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL_PORT_COMBO = 257556.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.1043
+   2. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0971
+   3. L4_DST_PORT = 42926.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0655
+   4. TCP_FLAGS = 29.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0323
+   5. L4_SRC_PORT = 3306.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0098
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 6)
+      • Balanced bidirectional flow (In: 4, Out: 3)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 10: Benign → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 17.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.5920
+   2. OUT_PKTS = 2517.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.1406
+   3. TCP_FLAGS = 0.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0631
+   4. IN_BYTES = 2531239.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0320
+   5. IN_PKTS = 2517.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0276
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 17)
+      • Balanced bidirectional flow (In: 2517, Out: 2517)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 11: DDoS → DDoS
+================================================================================
+
+🎯 CLASSIFICATION: DDoS (55.8% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (94.9% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.0058
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0184
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DDoS (55.8% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0622
+   2. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0578
+   3. FLOW_INTENSITY = 1429.8462
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0575
+   4. BYTE_RATE = 1549.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0550
+   5. BYTE_ASYMMETRY = 0.0058
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0400
+
+✅ PROOF SUMMARY:
+   🔴 DDOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DDoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.01)
+      • Distinguishing feature: PROTOCOL_INTENSITY
+      • Pattern consistent with distributed attack
+
+
+================================================================================
+SAMPLE 12: DDoS → DoS
+================================================================================
+
+🎯 CLASSIFICATION: DoS (52.5% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (87.8% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.0118
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0181
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DoS (52.5% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0622
+   2. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0578
+   3. FLOW_INTENSITY = 1404.9231
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0560
+   4. BYTE_RATE = 1522.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0536
+   5. L4_SRC_PORT = 58656.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0476
+
+✅ PROOF SUMMARY:
+   🔴 DOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.01)
+      • Distinguishing feature: PROTOCOL_INTENSITY
+      • Pattern consistent with single-source attack
+
+
+================================================================================
+SAMPLE 13: DDoS → DDoS
+================================================================================
+
+🎯 CLASSIFICATION: DDoS (57.7% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (95.7% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   3. TCP_FLAGS = 27.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0257
+   4. BYTE_ASYMMETRY = 0.0767
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0149
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DDoS (57.7% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. FLOW_DURATION_MILLISECONDS = 4283127.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0368
+   2. AVG_IN_PACKET_SIZE = 138.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0346
+   3. BYTE_ASYMMETRY = 0.0767
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0319
+   4. L4_SRC_PORT = 53694.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0281
+   5. PACKET_ASYMMETRY = 0.1000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0277
+
+✅ PROOF SUMMARY:
+   🔴 DDOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 0.00 pkts/ms)
+      • Protocol: 6 (Typical for DDoS)
+      • TCP Flags: 27 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.08)
+      • Distinguishing feature: FLOW_DURATION_MILLISECONDS
+      • Pattern consistent with distributed attack
+
+
+================================================================================
+SAMPLE 14: DDoS → DoS
+================================================================================
+
+🎯 CLASSIFICATION: DoS (52.1% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (87.4% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.0026
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0186
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DoS (52.1% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0622
+   2. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0578
+   3. FLOW_INTENSITY = 1425.2308
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0572
+   4. BYTE_RATE = 1544.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0548
+   5. L4_SRC_PORT = 35310.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0441
+
+✅ PROOF SUMMARY:
+   🔴 DOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.00)
+      • Distinguishing feature: PROTOCOL_INTENSITY
+      • Pattern consistent with single-source attack
+
+
+================================================================================
+SAMPLE 15: DDoS → DDoS
+================================================================================
+
+🎯 CLASSIFICATION: DDoS (50.3% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   3. TCP_FLAGS = 27.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0257
+   4. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+   5. BYTE_ASYMMETRY = 0.2087
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0082
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DDoS (50.3% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. AVG_OUT_PACKET_SIZE = 268.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0482
+   2. L4_SRC_PORT = 36116.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0410
+   3. AVG_PACKET_SIZE = 201.5455
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0400
+   4. FLOW_DURATION_MILLISECONDS = 4262091.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0365
+   5. FLOW_INTENSITY = 0.0005
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0276
+
+✅ PROOF SUMMARY:
+   🔴 DDOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 0.00 pkts/ms)
+      • Protocol: 6 (Typical for DDoS)
+      • TCP Flags: 27 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.21)
+      • Distinguishing feature: AVG_OUT_PACKET_SIZE
+      • Pattern consistent with distributed attack
+
+
+================================================================================
+SAMPLE 16: DDoS → DDoS
+================================================================================
+
+🎯 CLASSIFICATION: DDoS (50.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. BYTE_ASYMMETRY = 0.9811
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0305
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+   5. L7_PROTO = 7.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0078
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DDoS (50.0% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. BYTE_ASYMMETRY = 0.9811
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0721
+   2. TCP_PACKET_INTERACTION = 20.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0634
+   3. OUT_PKTS = 0.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0632
+   4. AVG_PACKET_SIZE = 26.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0610
+   5. AVG_IN_PACKET_SIZE = 26.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0600
+
+✅ PROOF SUMMARY:
+   🔴 DDOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 1.00 pkts/ms)
+      • Protocol: 6 (Typical for DDoS)
+      • TCP Flags: 20 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.98)
+      • Distinguishing feature: BYTE_ASYMMETRY
+      • Pattern consistent with distributed attack
+
+
+================================================================================
+SAMPLE 17: DDoS → DoS
+================================================================================
+
+🎯 CLASSIFICATION: DoS (52.9% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (89.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.1092
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0132
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DoS (52.9% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. FLOW_INTENSITY = 1596.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0674
+   2. BYTE_RATE = 1729.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0645
+   3. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0622
+   4. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0578
+   5. FLOW_DURATION_MILLISECONDS = 0.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0393
+
+✅ PROOF SUMMARY:
+   🔴 DOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.11)
+      • Distinguishing feature: FLOW_INTENSITY
+      • Pattern consistent with single-source attack
+
+
+================================================================================
+SAMPLE 18: DDoS → DDoS
+================================================================================
+
+🎯 CLASSIFICATION: DDoS (55.1% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (94.5% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.0216
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0176
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DDoS (55.1% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0622
+   2. FLOW_INTENSITY = 1452.9231
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0588
+   3. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0578
+   4. BYTE_RATE = 1574.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0563
+   5. FLOW_DURATION_MILLISECONDS = 0.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0393
+
+✅ PROOF SUMMARY:
+   🔴 DDOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DDoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.02)
+      • Distinguishing feature: PROTOCOL_INTENSITY
+      • Pattern consistent with distributed attack
+
+
+================================================================================
+SAMPLE 19: DDoS → DDoS
+================================================================================
+
+🎯 CLASSIFICATION: DDoS (52.6% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (92.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.0090
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0183
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DDoS (52.6% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0622
+   2. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0578
+   3. FLOW_INTENSITY = 1434.4615
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0577
+   4. BYTE_RATE = 1554.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0553
+   5. L4_SRC_PORT = 34946.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0456
+
+✅ PROOF SUMMARY:
+   🔴 DDOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DDoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.01)
+      • Distinguishing feature: PROTOCOL_INTENSITY
+      • Pattern consistent with distributed attack
+
+
+================================================================================
+SAMPLE 20: DDoS → DDoS
+================================================================================
+
+🎯 CLASSIFICATION: DDoS (50.4% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. BYTE_ASYMMETRY = 0.9811
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0305
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+   5. L7_PROTO = 7.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0078
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DDoS (50.4% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. BYTE_ASYMMETRY = 0.9811
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0721
+   2. TCP_PACKET_INTERACTION = 20.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0634
+   3. OUT_PKTS = 0.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0632
+   4. AVG_PACKET_SIZE = 26.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0610
+   5. AVG_IN_PACKET_SIZE = 26.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0600
+
+✅ PROOF SUMMARY:
+   🔴 DDOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 1.00 pkts/ms)
+      • Protocol: 6 (Typical for DDoS)
+      • TCP Flags: 20 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.98)
+      • Distinguishing feature: BYTE_ASYMMETRY
+      • Pattern consistent with distributed attack
+
+
+================================================================================
+SAMPLE 21: DoS → DoS
+================================================================================
+
+🎯 CLASSIFICATION: DoS (51.2% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. BYTE_ASYMMETRY = 0.9811
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0305
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+   5. L7_PROTO = 7.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0078
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DoS (51.2% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. BYTE_ASYMMETRY = 0.9811
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0721
+   2. TCP_PACKET_INTERACTION = 20.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0634
+   3. OUT_PKTS = 0.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0632
+   4. AVG_PACKET_SIZE = 26.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0610
+   5. AVG_IN_PACKET_SIZE = 26.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0600
+
+✅ PROOF SUMMARY:
+   🔴 DOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 1.00 pkts/ms)
+      • Protocol: 6 (Typical for DoS)
+      • TCP Flags: 20 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.98)
+      • Distinguishing feature: BYTE_ASYMMETRY
+      • Pattern consistent with single-source attack
+
+
+================================================================================
+SAMPLE 22: DoS → DoS
+================================================================================
+
+🎯 CLASSIFICATION: DoS (50.9% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (93.5% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.0540
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0160
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DoS (50.9% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0622
+   2. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0578
+   3. FLOW_INTENSITY = 1348.6154
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0526
+   4. BYTE_RATE = 1461.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0504
+   5. FLOW_DURATION_MILLISECONDS = 0.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0393
+
+✅ PROOF SUMMARY:
+   🔴 DOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.05)
+      • Distinguishing feature: PROTOCOL_INTENSITY
+      • Pattern consistent with single-source attack
+
+
+================================================================================
+SAMPLE 23: DoS → DoS
+================================================================================
+
+🎯 CLASSIFICATION: DoS (55.1% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (93.5% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.0440
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0165
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DoS (55.1% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0622
+   2. FLOW_INTENSITY = 1487.0769
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0609
+   3. BYTE_RATE = 1611.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0583
+   4. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0578
+   5. L4_SRC_PORT = 34164.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0486
+
+✅ PROOF SUMMARY:
+   🔴 DOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.04)
+      • Distinguishing feature: PROTOCOL_INTENSITY
+      • Pattern consistent with single-source attack
+
+
+================================================================================
+SAMPLE 24: DoS → DoS
+================================================================================
+
+🎯 CLASSIFICATION: DoS (50.2% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (99.9% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   3. TCP_FLAGS = 27.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0257
+   4. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+   5. L7_PROTO = 7.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0078
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DoS (50.2% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. AVG_OUT_PACKET_SIZE = 268.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0482
+   2. AVG_PACKET_SIZE = 213.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0466
+   3. FLOW_DURATION_MILLISECONDS = 4261363.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0364
+   4. AVG_IN_PACKET_SIZE = 131.6667
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0293
+   5. PACKET_ASYMMETRY = 0.1000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0277
+
+✅ PROOF SUMMARY:
+   🔴 DOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 0.00 pkts/ms)
+      • Protocol: 6 (Typical for DoS)
+      • TCP Flags: 27 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.26)
+      • Distinguishing feature: AVG_OUT_PACKET_SIZE
+      • Pattern consistent with single-source attack
+
+
+================================================================================
+SAMPLE 25: DoS → DDoS
+================================================================================
+
+🎯 CLASSIFICATION: DDoS (53.6% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (87.1% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.0903
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0142
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DDoS (53.6% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. FLOW_INTENSITY = 1562.7692
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0654
+   2. BYTE_RATE = 1693.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0626
+   3. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0622
+   4. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0578
+   5. L4_SRC_PORT = 33106.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0528
+
+✅ PROOF SUMMARY:
+   🔴 DDOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DDoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.09)
+      • Distinguishing feature: FLOW_INTENSITY
+      • Pattern consistent with distributed attack
+
+
+================================================================================
+SAMPLE 26: DoS → DDoS
+================================================================================
+
+🎯 CLASSIFICATION: DDoS (50.5% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (89.6% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. BYTE_ASYMMETRY = 0.9912
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0310
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+   5. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0093
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DDoS (50.5% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PACKET_ASYMMETRY = 0.6667
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0790
+   2. BYTE_ASYMMETRY = 0.9912
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0733
+   3. OUT_PKTS = 0.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0632
+   4. AVG_OUT_PACKET_SIZE = 0.0000
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0559
+   5. AVG_PACKET_SIZE = 37.3333
+      → LOWER value PUSHES AWAY FROM DDoS
+      → Impact strength: 0.0544
+
+✅ PROOF SUMMARY:
+   🔴 DDOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 0.00 pkts/ms)
+      • Protocol: 6 (Typical for DDoS)
+      • TCP Flags: 22 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.99)
+      • Distinguishing feature: PACKET_ASYMMETRY
+      • Pattern consistent with distributed attack
+
+
+================================================================================
+SAMPLE 27: DoS → DDoS
+================================================================================
+
+🎯 CLASSIFICATION: DDoS (58.6% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (95.3% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.0405
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0167
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DDoS (58.6% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0622
+   2. FLOW_INTENSITY = 1481.5385
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0605
+   3. BYTE_RATE = 1605.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0580
+   4. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0578
+   5. L4_SRC_PORT = 59714.0000
+      → HIGHER value PUSHES TOWARDS DDoS
+      → Impact strength: 0.0517
+
+✅ PROOF SUMMARY:
+   🔴 DDOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DDoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.04)
+      • Distinguishing feature: PROTOCOL_INTENSITY
+      • Pattern consistent with distributed attack
+
+
+================================================================================
+SAMPLE 28: DoS → DoS
+================================================================================
+
+🎯 CLASSIFICATION: DoS (51.4% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (83.6% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   3. TCP_FLAGS = 27.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0257
+   4. BYTE_ASYMMETRY = 0.0514
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0161
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DoS (51.4% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. L4_SRC_PORT = 34244.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0483
+   2. FLOW_DURATION_MILLISECONDS = 4289914.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0369
+   3. BYTE_ASYMMETRY = 0.0514
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0348
+   4. AVG_IN_PACKET_SIZE = 131.1667
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0289
+   5. PACKET_ASYMMETRY = 0.1000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0277
+
+✅ PROOF SUMMARY:
+   🔴 DOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 0.00 pkts/ms)
+      • Protocol: 6 (Typical for DoS)
+      • TCP Flags: 27 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.05)
+      • Distinguishing feature: L4_SRC_PORT
+      • Pattern consistent with single-source attack
+
+
+================================================================================
+SAMPLE 29: DoS → DoS
+================================================================================
+
+🎯 CLASSIFICATION: DoS (55.5% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (82.1% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0389
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. BYTE_ASYMMETRY = 0.0253
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0174
+   5. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DoS (55.5% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PROTOCOL_INTENSITY = 72.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0622
+   2. FLOW_INTENSITY = 1458.4615
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0592
+   3. PACKET_RATE = 12.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0578
+   4. BYTE_RATE = 1580.0000
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0567
+   5. FLOW_DURATION_MILLISECONDS = 0.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0393
+
+✅ PROOF SUMMARY:
+   🔴 DOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 12.00 pkts/ms)
+      • Protocol: 6 (Typical for DoS)
+      • TCP Flags: 31 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.03)
+      • Distinguishing feature: PROTOCOL_INTENSITY
+      • Pattern consistent with single-source attack
+
+
+================================================================================
+SAMPLE 30: DoS → DoS
+================================================================================
+
+🎯 CLASSIFICATION: DoS (55.3% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: DOS (90.6% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0971
+   2. BYTE_ASYMMETRY = 0.9912
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0310
+   3. PROTOCOL_PORT_COMBO = 480.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0262
+   4. L4_DST_PORT = 80.0000
+      → LOWER value PUSHES AWAY FROM DOS
+      → Impact strength: 0.0100
+   5. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS DOS
+      → Impact strength: 0.0093
+
+📊 STAGE 2 ANALYSIS (DDoS vs DoS Distinction):
+   Refined prediction: DoS (55.3% confidence)
+
+   🔍 Key Distinguishing Features:
+   1. PACKET_ASYMMETRY = 0.6667
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0790
+   2. BYTE_ASYMMETRY = 0.9912
+      → HIGHER value PUSHES TOWARDS DoS
+      → Impact strength: 0.0733
+   3. OUT_PKTS = 0.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0632
+   4. AVG_OUT_PACKET_SIZE = 0.0000
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0559
+   5. AVG_PACKET_SIZE = 37.3333
+      → LOWER value PUSHES AWAY FROM DoS
+      → Impact strength: 0.0544
+
+✅ PROOF SUMMARY:
+   🔴 DOS ATTACK INDICATORS:
+      • High-volume flooding detected (Packet rate: 0.00 pkts/ms)
+      • Protocol: 6 (Typical for DoS)
+      • TCP Flags: 22 (Possible SYN flood)
+      • Asymmetric traffic (Asymmetry: 0.99)
+      • Distinguishing feature: PACKET_ASYMMETRY
+      • Pattern consistent with single-source attack
+
+
+================================================================================
+SAMPLE 31: Reconnaissance → Reconnaissance
+================================================================================
+
+🎯 CLASSIFICATION: Reconnaissance (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Reconnaissance (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0971
+   2. PROTOCOL_PORT_COMBO = 96678.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.0226
+   3. L4_DST_PORT = 16113.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.0182
+   4. BYTE_ASYMMETRY = 0.0471
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0164
+   5. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0133
+
+✅ PROOF SUMMARY:
+   🟡 RECONNAISSANCE ATTACK INDICATORS:
+      • Protocol scanning pattern (Protocol: 6)
+      • Low packet rate (0.00 pkts/ms) - typical for scanning
+      • TCP Flags: 22 (Port scanning signature)
+      • Probing behavior detected
+      • Information gathering attempt identified
+
+
+================================================================================
+SAMPLE 32: Reconnaissance → Reconnaissance
+================================================================================
+
+🎯 CLASSIFICATION: Reconnaissance (99.9% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Reconnaissance (99.9% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0971
+   2. PROTOCOL_PORT_COMBO = 636.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0261
+   3. BYTE_ASYMMETRY = 0.0471
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0164
+   4. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0133
+   5. L4_DST_PORT = 106.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0100
+
+✅ PROOF SUMMARY:
+   🟡 RECONNAISSANCE ATTACK INDICATORS:
+      • Protocol scanning pattern (Protocol: 6)
+      • Low packet rate (0.00 pkts/ms) - typical for scanning
+      • TCP Flags: 22 (Port scanning signature)
+      • Probing behavior detected
+      • Information gathering attempt identified
+
+
+================================================================================
+SAMPLE 33: Reconnaissance → Reconnaissance
+================================================================================
+
+🎯 CLASSIFICATION: Reconnaissance (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Reconnaissance (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL_PORT_COMBO = 316038.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.1340
+   2. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0971
+   3. L4_DST_PORT = 52673.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.0826
+   4. BYTE_ASYMMETRY = 0.0471
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0164
+   5. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0133
+
+✅ PROOF SUMMARY:
+   🟡 RECONNAISSANCE ATTACK INDICATORS:
+      • Protocol scanning pattern (Protocol: 6)
+      • Low packet rate (0.00 pkts/ms) - typical for scanning
+      • TCP Flags: 22 (Port scanning signature)
+      • Probing behavior detected
+      • Information gathering attempt identified
+
+
+================================================================================
+SAMPLE 34: Reconnaissance → Reconnaissance
+================================================================================
+
+🎯 CLASSIFICATION: Reconnaissance (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Reconnaissance (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0971
+   2. BYTE_ASYMMETRY = 0.0471
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0164
+   3. PROTOCOL_PORT_COMBO = 22884.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0148
+   4. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0133
+   5. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.0093
+
+✅ PROOF SUMMARY:
+   🟡 RECONNAISSANCE ATTACK INDICATORS:
+      • Protocol scanning pattern (Protocol: 6)
+      • Low packet rate (0.00 pkts/ms) - typical for scanning
+      • TCP Flags: 22 (Port scanning signature)
+      • Probing behavior detected
+      • Information gathering attempt identified
+
+
+================================================================================
+SAMPLE 35: Reconnaissance → Reconnaissance
+================================================================================
+
+🎯 CLASSIFICATION: Reconnaissance (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Reconnaissance (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0971
+   2. PROTOCOL_PORT_COMBO = 6588.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0231
+   3. BYTE_ASYMMETRY = 0.0471
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0164
+   4. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0133
+   5. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.0093
+
+✅ PROOF SUMMARY:
+   🟡 RECONNAISSANCE ATTACK INDICATORS:
+      • Protocol scanning pattern (Protocol: 6)
+      • Low packet rate (0.00 pkts/ms) - typical for scanning
+      • TCP Flags: 22 (Port scanning signature)
+      • Probing behavior detected
+      • Information gathering attempt identified
+
+
+================================================================================
+SAMPLE 36: Reconnaissance → Benign
+================================================================================
+
+🎯 CLASSIFICATION: Benign (98.8% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Benign (98.8% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL_PORT_COMBO = 351336.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.1519
+   2. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0971
+   3. L4_DST_PORT = 58556.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0930
+   4. TCP_FLAGS = 29.0000
+      → HIGHER value PUSHES TOWARDS Benign
+      → Impact strength: 0.0323
+   5. L4_SRC_PORT = 3306.0000
+      → LOWER value PUSHES AWAY FROM Benign
+      → Impact strength: 0.0098
+
+✅ PROOF SUMMARY:
+   🟢 BENIGN TRAFFIC INDICATORS:
+      • Normal protocol usage (Protocol: 6)
+      • Balanced bidirectional flow (In: 4, Out: 3)
+      • Moderate packet rate (0.00 pkts/ms)
+      • No anomalous patterns detected
+
+
+================================================================================
+SAMPLE 37: Reconnaissance → Reconnaissance
+================================================================================
+
+🎯 CLASSIFICATION: Reconnaissance (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Reconnaissance (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0971
+   2. PROTOCOL_PORT_COMBO = 7374.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0227
+   3. BYTE_ASYMMETRY = 0.0471
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0164
+   4. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0133
+   5. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.0093
+
+✅ PROOF SUMMARY:
+   🟡 RECONNAISSANCE ATTACK INDICATORS:
+      • Protocol scanning pattern (Protocol: 6)
+      • Low packet rate (0.00 pkts/ms) - typical for scanning
+      • TCP Flags: 22 (Port scanning signature)
+      • Probing behavior detected
+      • Information gathering attempt identified
+
+
+================================================================================
+SAMPLE 38: Reconnaissance → Reconnaissance
+================================================================================
+
+🎯 CLASSIFICATION: Reconnaissance (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Reconnaissance (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0971
+   2. BYTE_ASYMMETRY = 0.0471
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0164
+   3. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0133
+   4. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.0093
+   5. PROTOCOL_PORT_COMBO = 36936.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0077
+
+✅ PROOF SUMMARY:
+   🟡 RECONNAISSANCE ATTACK INDICATORS:
+      • Protocol scanning pattern (Protocol: 6)
+      • Low packet rate (0.00 pkts/ms) - typical for scanning
+      • TCP Flags: 22 (Port scanning signature)
+      • Probing behavior detected
+      • Information gathering attempt identified
+
+
+================================================================================
+SAMPLE 39: Reconnaissance → Reconnaissance
+================================================================================
+
+🎯 CLASSIFICATION: Reconnaissance (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Reconnaissance (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0971
+   2. PROTOCOL_PORT_COMBO = 10128.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0213
+   3. BYTE_ASYMMETRY = 0.0471
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0164
+   4. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0133
+   5. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.0093
+
+✅ PROOF SUMMARY:
+   🟡 RECONNAISSANCE ATTACK INDICATORS:
+      • Protocol scanning pattern (Protocol: 6)
+      • Low packet rate (0.00 pkts/ms) - typical for scanning
+      • TCP Flags: 22 (Port scanning signature)
+      • Probing behavior detected
+      • Information gathering attempt identified
+
+
+================================================================================
+SAMPLE 40: Reconnaissance → Reconnaissance
+================================================================================
+
+🎯 CLASSIFICATION: Reconnaissance (54.7% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Reconnaissance (54.7% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 17.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.5920
+   2. PROTOCOL_PORT_COMBO = 278834.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.1151
+   3. TCP_FLAGS = 0.0000
+      → LOWER value PUSHES AWAY FROM Reconnaissance
+      → Impact strength: 0.0631
+   4. BYTE_ASYMMETRY = 0.9655
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.0297
+   5. L4_DST_PORT = 16402.0000
+      → HIGHER value PUSHES TOWARDS Reconnaissance
+      → Impact strength: 0.0187
+
+✅ PROOF SUMMARY:
+   🟡 RECONNAISSANCE ATTACK INDICATORS:
+      • Protocol scanning pattern (Protocol: 17)
+      • Low packet rate (1.00 pkts/ms) - typical for scanning
+      • TCP Flags: 0 (Port scanning signature)
+      • Probing behavior detected
+      • Information gathering attempt identified
+
+
+================================================================================
+SAMPLE 41: Theft → Theft
+================================================================================
+
+🎯 CLASSIFICATION: Theft (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Theft (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0971
+   2. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0133
+   3. PROTOCOL_PORT_COMBO = 26598.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0129
+   4. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0093
+   5. BYTE_ASYMMETRY = 0.1980
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0088
+
+✅ PROOF SUMMARY:
+   🔴 DATA THEFT INDICATORS:
+      • Protocol: 6 (Data exfiltration)
+      • High data transfer (Asymmetry: 0.20)
+      • Packet rate: 0.00 pkts/ms
+      • Unauthorized data access pattern
+      • Exfiltration behavior detected
+
+
+================================================================================
+SAMPLE 42: Theft → Theft
+================================================================================
+
+🎯 CLASSIFICATION: Theft (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Theft (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0971
+   2. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0133
+   3. PROTOCOL_PORT_COMBO = 26598.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0129
+   4. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0093
+   5. BYTE_ASYMMETRY = 0.1980
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0088
+
+✅ PROOF SUMMARY:
+   🔴 DATA THEFT INDICATORS:
+      • Protocol: 6 (Data exfiltration)
+      • High data transfer (Asymmetry: 0.20)
+      • Packet rate: 0.00 pkts/ms
+      • Unauthorized data access pattern
+      • Exfiltration behavior detected
+
+
+================================================================================
+SAMPLE 43: Theft → Theft
+================================================================================
+
+🎯 CLASSIFICATION: Theft (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Theft (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0971
+   2. TCP_FLAGS = 31.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0389
+   3. BYTE_ASYMMETRY = 0.9135
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0271
+   4. PROTOCOL_PORT_COMBO = 2670.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0251
+   5. L7_PROTO = 41.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0190
+
+✅ PROOF SUMMARY:
+   🔴 DATA THEFT INDICATORS:
+      • Protocol: 6 (Data exfiltration)
+      • High data transfer (Asymmetry: 0.91)
+      • Packet rate: 0.00 pkts/ms
+      • Unauthorized data access pattern
+      • Exfiltration behavior detected
+
+
+================================================================================
+SAMPLE 44: Theft → Theft
+================================================================================
+
+🎯 CLASSIFICATION: Theft (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Theft (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0971
+   2. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0133
+   3. PROTOCOL_PORT_COMBO = 26598.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0129
+   4. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0093
+   5. BYTE_ASYMMETRY = 0.1980
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0088
+
+✅ PROOF SUMMARY:
+   🔴 DATA THEFT INDICATORS:
+      • Protocol: 6 (Data exfiltration)
+      • High data transfer (Asymmetry: 0.20)
+      • Packet rate: 0.00 pkts/ms
+      • Unauthorized data access pattern
+      • Exfiltration behavior detected
+
+
+================================================================================
+SAMPLE 45: Theft → Theft
+================================================================================
+
+🎯 CLASSIFICATION: Theft (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Theft (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0971
+   2. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0133
+   3. PROTOCOL_PORT_COMBO = 26598.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0129
+   4. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0093
+   5. BYTE_ASYMMETRY = 0.1980
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0088
+
+✅ PROOF SUMMARY:
+   🔴 DATA THEFT INDICATORS:
+      • Protocol: 6 (Data exfiltration)
+      • High data transfer (Asymmetry: 0.20)
+      • Packet rate: 0.00 pkts/ms
+      • Unauthorized data access pattern
+      • Exfiltration behavior detected
+
+
+================================================================================
+SAMPLE 46: Theft → Theft
+================================================================================
+
+🎯 CLASSIFICATION: Theft (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Theft (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0971
+   2. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0133
+   3. PROTOCOL_PORT_COMBO = 26598.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0129
+   4. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0093
+   5. BYTE_ASYMMETRY = 0.1980
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0088
+
+✅ PROOF SUMMARY:
+   🔴 DATA THEFT INDICATORS:
+      • Protocol: 6 (Data exfiltration)
+      • High data transfer (Asymmetry: 0.20)
+      • Packet rate: 0.00 pkts/ms
+      • Unauthorized data access pattern
+      • Exfiltration behavior detected
+
+
+================================================================================
+SAMPLE 47: Theft → Theft
+================================================================================
+
+🎯 CLASSIFICATION: Theft (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Theft (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0971
+   2. L7_PROTO = 92.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0592
+   3. PROTOCOL_PORT_COMBO = 132.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0264
+   4. TCP_FLAGS = 27.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0257
+   5. L4_DST_PORT = 22.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0101
+
+✅ PROOF SUMMARY:
+   🔴 DATA THEFT INDICATORS:
+      • Protocol: 6 (Data exfiltration)
+      • High data transfer (Asymmetry: 0.34)
+      • Packet rate: 0.00 pkts/ms
+      • Unauthorized data access pattern
+      • Exfiltration behavior detected
+
+
+================================================================================
+SAMPLE 48: Theft → Theft
+================================================================================
+
+🎯 CLASSIFICATION: Theft (88.3% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Theft (88.3% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 1.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.4103
+   2. TCP_FLAGS = 0.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0631
+   3. BYTE_ASYMMETRY = 0.9999
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0314
+   4. PROTOCOL_PORT_COMBO = 0.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0264
+   5. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0133
+
+✅ PROOF SUMMARY:
+   🔴 DATA THEFT INDICATORS:
+      • Protocol: 1 (Data exfiltration)
+      • High data transfer (Asymmetry: 1.00)
+      • Packet rate: 0.00 pkts/ms
+      • Unauthorized data access pattern
+      • Exfiltration behavior detected
+
+
+================================================================================
+SAMPLE 49: Theft → Theft
+================================================================================
+
+🎯 CLASSIFICATION: Theft (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Theft (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0971
+   2. L7_PROTO = 92.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0592
+   3. PROTOCOL_PORT_COMBO = 132.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0264
+   4. TCP_FLAGS = 27.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0257
+   5. L4_DST_PORT = 22.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0101
+
+✅ PROOF SUMMARY:
+   🔴 DATA THEFT INDICATORS:
+      • Protocol: 6 (Data exfiltration)
+      • High data transfer (Asymmetry: 0.34)
+      • Packet rate: 0.00 pkts/ms
+      • Unauthorized data access pattern
+      • Exfiltration behavior detected
+
+
+================================================================================
+SAMPLE 50: Theft → Theft
+================================================================================
+
+🎯 CLASSIFICATION: Theft (100.0% confidence)
+
+📊 STAGE 1 ANALYSIS (Attack Category Detection):
+   Detected as: Theft (100.0% confidence)
+
+   🔍 Key Evidence:
+   1. PROTOCOL = 6.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0971
+   2. L7_PROTO = 0.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0133
+   3. PROTOCOL_PORT_COMBO = 26598.0000
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0129
+   4. TCP_FLAGS = 22.0000
+      → HIGHER value PUSHES TOWARDS Theft
+      → Impact strength: 0.0093
+   5. BYTE_ASYMMETRY = 0.1980
+      → LOWER value PUSHES AWAY FROM Theft
+      → Impact strength: 0.0088
+
+✅ PROOF SUMMARY:
+   🔴 DATA THEFT INDICATORS:
+      • Protocol: 6 (Data exfiltration)
+      • High data transfer (Asymmetry: 0.20)
+      • Packet rate: 0.00 pkts/ms
+      • Unauthorized data access pattern
+      • Exfiltration behavior detected
+

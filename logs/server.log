@@ -1,0 +1,20 @@
+127.0.0.1 - - [05/Nov/2025 22:36:28] "GET /web_frontend.html HTTP/1.1" 200 -
+127.0.0.1 - - [05/Nov/2025 22:37:45] "GET /web_frontend.html HTTP/1.1" 200 -
+127.0.0.1 - - [05/Nov/2025 22:37:46] code 404, message File not found
+127.0.0.1 - - [05/Nov/2025 22:37:46] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [05/Nov/2025 23:00:22] "GET /web_frontend.html HTTP/1.1" 304 -
+127.0.0.1 - - [05/Nov/2025 23:15:56] code 404, message File not found
+127.0.0.1 - - [05/Nov/2025 23:15:56] "GET /web_frontend.html%20Backend%20API:%20http://localhost:8000/ HTTP/1.1" 404 -
+127.0.0.1 - - [05/Nov/2025 23:15:56] code 404, message File not found
+127.0.0.1 - - [05/Nov/2025 23:15:56] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [05/Nov/2025 23:16:03] code 404, message File not found
+127.0.0.1 - - [05/Nov/2025 23:16:03] "GET /web_frontend.html%20Backend%20API:%20http://localhost:8000/ HTTP/1.1" 404 -
+127.0.0.1 - - [05/Nov/2025 23:16:04] code 404, message File not found
+127.0.0.1 - - [05/Nov/2025 23:16:04] "GET /web_frontend.html%20Backend%20API:%20http://localhost:8000/ HTTP/1.1" 404 -
+127.0.0.1 - - [05/Nov/2025 23:16:12] code 404, message File not found
+127.0.0.1 - - [05/Nov/2025 23:16:12] "GET /web_frontend.html%20Backend%20API:%20http://localhost:8000/ HTTP/1.1" 404 -
+127.0.0.1 - - [05/Nov/2025 23:16:47] "GET /web_frontend.html HTTP/1.1" 200 -
+127.0.0.1 - - [06/Nov/2025 07:57:56] code 404, message File not found
+127.0.0.1 - - [06/Nov/2025 07:57:56] "GET /web_frontend.html HTTP/1.1" 404 -
+127.0.0.1 - - [06/Nov/2025 07:58:02] code 404, message File not found
+127.0.0.1 - - [06/Nov/2025 07:58:02] "GET /web_frontend.html HTTP/1.1" 404 -

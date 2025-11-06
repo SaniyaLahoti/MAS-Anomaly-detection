@@ -1,0 +1,18 @@
+
+================================================================================
+TRAINING HIERARCHICAL XGBOOST ON V2 DATASET
+================================================================================
+
+Using preprocessed V2 data: NF-BoT-IoT-v2-preprocessed.csv
+Same architecture as V1: Stage 1 (4-class) + Stage 2 (DDoS vs DoS)
+================================================================================
+
+Traceback (most recent call last):
+  File "/Users/saniyalahoti/Downloads/MAS-LSTM-1/scripts/training/train_v2_xgboost.py", line 106, in <module>
+    main()
+    ~~~~^^
+  File "/Users/saniyalahoti/Downloads/MAS-LSTM-1/scripts/training/train_v2_xgboost.py", line 37, in main
+    os.makedirs(output_dir, exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 228, in makedirs
+PermissionError: [Errno 1] Operation not permitted: '../../models/v2_hierarchical/'

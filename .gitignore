@@ -1,0 +1,37 @@
+# Large dataset files - too large for GitHub
+datasets/v1_dataset/NF-ToN-IoT.csv
+datasets/v2_dataset/NF-BoT-IoT-v2.csv.gz
+datasets/v2_dataset/NF-ToN-IoT-v2.csv.gz
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment files
+.env
+.venv
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Model files (optional - uncomment if you don't want to track model files)
+# *.h5
+# *.pkl
+# *.json
+# *.npy
+

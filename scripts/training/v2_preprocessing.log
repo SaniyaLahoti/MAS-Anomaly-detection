@@ -1,0 +1,185 @@
+
+================================================================================
+V2 DATASET PREPROCESSING PIPELINE
+================================================================================
+
+Objective: Extract V1-format columns, balance classes, prepare for training
+================================================================================
+
+================================================================================
+LOADING V2 DATASET (CHUNKED)
+================================================================================
+
+📂 Loading from: ../../datasets/v2_dataset/NF-BoT-IoT-v2.csv.gz
+⏳ Reading in chunks to manage memory...
+
+🔍 First pass: Analyzing dataset structure...
+   Processed chunk 1: 1,000,000 rows total
+   Processed chunk 2: 2,000,000 rows total
+   Processed chunk 3: 3,000,000 rows total
+   Processed chunk 4: 4,000,000 rows total
+   Processed chunk 5: 5,000,000 rows total
+   Processed chunk 6: 6,000,000 rows total
+   Processed chunk 7: 7,000,000 rows total
+   Processed chunk 8: 8,000,000 rows total
+   Processed chunk 9: 9,000,000 rows total
+   Processed chunk 10: 10,000,000 rows total
+   Processed chunk 11: 11,000,000 rows total
+   Processed chunk 12: 12,000,000 rows total
+   Processed chunk 13: 13,000,000 rows total
+   Processed chunk 14: 14,000,000 rows total
+   Processed chunk 15: 15,000,000 rows total
+   Processed chunk 16: 16,000,000 rows total
+   Processed chunk 17: 17,000,000 rows total
+   Processed chunk 18: 18,000,000 rows total
+   Processed chunk 19: 19,000,000 rows total
+   Processed chunk 20: 20,000,000 rows total
+   Processed chunk 21: 21,000,000 rows total
+   Processed chunk 22: 22,000,000 rows total
+   Processed chunk 23: 23,000,000 rows total
+   Processed chunk 24: 24,000,000 rows total
+   Processed chunk 25: 25,000,000 rows total
+   Processed chunk 26: 26,000,000 rows total
+   Processed chunk 27: 27,000,000 rows total
+   Processed chunk 28: 28,000,000 rows total
+   Processed chunk 29: 29,000,000 rows total
+   Processed chunk 30: 30,000,000 rows total
+   Processed chunk 31: 31,000,000 rows total
+   Processed chunk 32: 32,000,000 rows total
+   Processed chunk 33: 33,000,000 rows total
+   Processed chunk 34: 34,000,000 rows total
+   Processed chunk 35: 35,000,000 rows total
+   Processed chunk 36: 36,000,000 rows total
+   Processed chunk 37: 37,000,000 rows total
+   Processed chunk 38: 37,763,497 rows total
+
+✅ Dataset structure:
+   Total rows: 37,763,497
+   Attack types: ['DoS', 'DDoS', 'Reconnaissance', 'Benign', 'Theft']
+
+📊 Sampling rate: 0.0132 (1.32%)
+
+🔍 Second pass: Sampling data...
+   Sampled chunk 1: 13,240 rows
+   Sampled chunk 2: 13,240 rows
+   Sampled chunk 3: 13,240 rows
+   Sampled chunk 4: 13,240 rows
+   Sampled chunk 5: 13,240 rows
+   Sampled chunk 6: 13,240 rows
+   Sampled chunk 7: 13,240 rows
+   Sampled chunk 8: 13,240 rows
+   Sampled chunk 9: 13,240 rows
+   Sampled chunk 10: 13,240 rows
+   Sampled chunk 11: 13,240 rows
+   Sampled chunk 12: 13,240 rows
+   Sampled chunk 13: 13,240 rows
+   Sampled chunk 14: 13,240 rows
+   Sampled chunk 15: 13,240 rows
+   Sampled chunk 16: 13,240 rows
+   Sampled chunk 17: 13,240 rows
+   Sampled chunk 18: 13,240 rows
+   Sampled chunk 19: 13,240 rows
+   Sampled chunk 20: 13,240 rows
+   Sampled chunk 21: 13,240 rows
+   Sampled chunk 22: 13,240 rows
+   Sampled chunk 23: 13,240 rows
+   Sampled chunk 24: 13,240 rows
+   Sampled chunk 25: 13,240 rows
+   Sampled chunk 26: 13,240 rows
+   Sampled chunk 27: 13,240 rows
+   Sampled chunk 28: 13,240 rows
+   Sampled chunk 29: 13,240 rows
+   Sampled chunk 30: 13,240 rows
+   Sampled chunk 31: 13,240 rows
+   Sampled chunk 32: 13,240 rows
+   Sampled chunk 33: 13,240 rows
+   Sampled chunk 34: 13,240 rows
+   Sampled chunk 35: 13,240 rows
+   Sampled chunk 36: 13,240 rows
+   Sampled chunk 37: 13,240 rows
+   Sampled chunk 38: 10,109 rows
+
+🔗 Combining 38 chunks...
+
+✅ Dataset loaded and sampled: (499989, 14)
+   Rows: 499,989
+   Columns: 14
+
+================================================================================
+DISTRIBUTION AFTER STRATIFIED SAMPLING
+================================================================================
+
+================================================================================
+CLASS DISTRIBUTION ANALYSIS
+================================================================================
+
+📊 Attack Type Distribution:
+--------------------------------------------------------------------------------
+   DDoS                :      243,262 ( 48.65%)
+   DoS                 :      220,521 ( 44.11%)
+   Reconnaissance      :       34,468 (  6.89%)
+   Benign              :        1,707 (  0.34%)
+   Theft               :           31 (  0.01%)
+--------------------------------------------------------------------------------
+   TOTAL               :      499,989 (100.00%)
+
+================================================================================
+HYBRID BALANCING (Target: 25,000 per class)
+================================================================================
+
+🔄 Balancing each class:
+--------------------------------------------------------------------------------
+   Reconnaissance      :       34,468 →   25,000 (UNDERSAMPLED)
+   DDoS                :      243,262 →   25,000 (UNDERSAMPLED)
+   DoS                 :      220,521 →   25,000 (UNDERSAMPLED)
+   Benign              :        1,707 →   25,000 (OVERSAMPLED)
+   Theft               :           31 →   25,000 (OVERSAMPLED)
+--------------------------------------------------------------------------------
+   TOTAL               :      499,989 →  125,000
+
+✅ Hybrid balancing complete: (125000, 14)
+
+================================================================================
+DATA CLEANING
+================================================================================
+
+✅ No missing values detected
+
+✅ Data cleaning complete
+   Final shape: (125000, 14)
+
+================================================================================
+FINAL DISTRIBUTION (BALANCED & CLEANED)
+================================================================================
+
+================================================================================
+CLASS DISTRIBUTION ANALYSIS
+================================================================================
+
+📊 Attack Type Distribution:
+--------------------------------------------------------------------------------
+   Theft               :       25,000 ( 20.00%)
+   DDoS                :       25,000 ( 20.00%)
+   DoS                 :       25,000 ( 20.00%)
+   Reconnaissance      :       25,000 ( 20.00%)
+   Benign              :       25,000 ( 20.00%)
+--------------------------------------------------------------------------------
+   TOTAL               :      125,000 (100.00%)
+
+================================================================================
+SAVING PREPROCESSED DATA
+================================================================================
+
+✅ Data saved to: ../../datasets/v2_dataset/NF-BoT-IoT-v2-preprocessed.csv
+   Rows: 125,000
+   Columns: 14
+   File size: 8.86 MB
+
+================================================================================
+✅ V2 PREPROCESSING COMPLETE!
+================================================================================
+
+📁 Preprocessed data ready at: ../../datasets/v2_dataset/NF-BoT-IoT-v2-preprocessed.csv
+   Use this file for training hierarchical models
+
+================================================================================

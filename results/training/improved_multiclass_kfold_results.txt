@@ -1,0 +1,48 @@
+================================================================================
+IMPROVED MULTI-CLASS ATTACK DETECTION - 5-FOLD CV RESULTS
+================================================================================
+
+ATTACK TYPES:
+--------------------------------------------------------------------------------
+  0: Benign
+  1: DDoS
+  2: DoS
+  3: Reconnaissance
+  4: Theft
+
+5-FOLD CROSS-VALIDATION RESULTS:
+--------------------------------------------------------------------------------
+Accuracy:  0.7131 (±0.0017)
+Precision: 0.7186 (±0.0008)
+Recall:    0.7131 (±0.0017)
+F1-Score:  0.7151 (±0.0013)
+
+PER-CLASS PERFORMANCE:
+--------------------------------------------------------------------------------
+Class                Precision    Recall       F1-Score    
+--------------------------------------------------------------------------------
+Benign               0.9552       0.9948       0.9746      
+DDoS                 0.3329       0.3337       0.3333      
+DoS                  0.3383       0.3507       0.3444      
+Reconnaissance       0.9941       0.8861       0.9369      
+Theft                0.9726       1.0000       0.9861      
+
+FINAL MODEL TRAINING TIME: 5.87 seconds
+
+TOP 15 FEATURE IMPORTANCE:
+--------------------------------------------------------------------------------
+ 1. PROTOCOL                           : 0.3352
+ 2. L7_PROTO                           : 0.1741
+ 3. PROTOCOL_INTENSITY                 : 0.0950
+ 4. OUT_PKTS                           : 0.0795
+ 5. TCP_FLAGS                          : 0.0709
+ 6. IN_OUT_PACKET_RATIO                : 0.0474
+ 7. IN_BYTES                           : 0.0370
+ 8. AVG_OUT_PACKET_SIZE                : 0.0278
+ 9. L4_DST_PORT                        : 0.0211
+10. AVG_IN_PACKET_SIZE                 : 0.0164
+11. OUT_BYTES                          : 0.0162
+12. IN_OUT_BYTE_RATIO                  : 0.0134
+13. BYTE_ASYMMETRY                     : 0.0123
+14. IN_PKTS                            : 0.0083
+15. BYTES_PER_MS                       : 0.0075

@@ -1,0 +1,39 @@
+================================================================================
+XGBOOST ANOMALY DETECTION - TRAINING RESULTS
+Dataset: NF-BoT-IoT v1
+================================================================================
+
+TRAINING SET RESULTS
+--------------------------------------------------------------------------------
+Accuracy:  0.9785 (97.85%)
+Precision: 0.9987
+Recall:    0.9582
+F1-Score:  0.9780
+ROC-AUC:   0.9956
+Prediction Time: 0.2051 seconds
+
+TEST SET RESULTS
+--------------------------------------------------------------------------------
+Accuracy:  0.9782 (97.82%)
+Precision: 0.9985
+Recall:    0.9578
+F1-Score:  0.9777
+ROC-AUC:   0.9956
+Prediction Time: 0.0379 seconds
+
+TRAINING TIME
+--------------------------------------------------------------------------------
+Total Training Time: 3.53 seconds (0.06 minutes)
+
+FEATURE IMPORTANCE
+--------------------------------------------------------------------------------
+1. L7_PROTO                      : 0.3693
+2. FLOW_DURATION_MILLISECONDS    : 0.2226
+3. L4_DST_PORT                   : 0.1363
+4. L4_SRC_PORT                   : 0.1324
+5. IN_BYTES                      : 0.1019
+6. IN_PKTS                       : 0.0375
+7. PROTOCOL                      : 0.0000
+8. OUT_BYTES                     : 0.0000
+9. OUT_PKTS                      : 0.0000
+10. TCP_FLAGS                     : 0.0000
