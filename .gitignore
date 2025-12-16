@@ -1,0 +1,202 @@
+# ========================================
+# CRITICAL: API KEYS AND SECRETS
+# ========================================
+.env
+.env.*
+*.env
+env.local
+.env.local
+.env.production
+.env.development
+secrets.json
+config.json
+credentials.json
+
+# OpenAI API Key files
+openai_key.txt
+api_keys.txt
+*.key
+
+# ========================================
+# LARGE DATASET FILES (DO NOT UPLOAD)
+# ========================================
+*.csv
+*.tsv
+*.dat
+*.data
+data/
+datasets/
+raw_data/
+processed_data/
+*.h5
+*.hdf5
+*.parquet
+
+# Exclude specific large CSVs
+NF-BoT-IoT*.csv
+NF-ToN-IoT*.csv
+*_train.csv
+*_test.csv
+*_validation.csv
+
+# ========================================
+# DOCUMENTATION / MARKDOWN (NOT NEEDED FOR DEPLOYMENT)
+# ========================================
+*.md
+!README.md
+FINAL_*.md
+CLEAN_*.md
+RESEARCH_*.md
+FEATURE_*.md
+*_TABLES.md
+*_STATUS.md
+*_DIAGRAMS.md
+*_COMPARISON*.md
+notes.txt
+TODO.txt
+CHANGELOG.md
+
+# ========================================
+# PYTHON
+# ========================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# ========================================
+# IDE / EDITOR FILES
+# ========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ========================================
+# LOGS AND TEMPORARY FILES
+# ========================================
+*.log
+logs/
+*.tmp
+*.temp
+*.bak
+*.backup
+api.log
+kfold_evaluation_log.txt
+*_log.txt
+
+# ========================================
+# MODEL CHECKPOINTS (Optional - Keep trained models)
+# ========================================
+# Uncomment if models are too large (>100MB each)
+# checkpoints/
+# *.ckpt
+# *.pth
+# *.pt
+
+# ========================================
+# SYSTEM FILES
+# ========================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ========================================
+# PROJECT SPECIFIC
+# ========================================
+# Test and evaluation scripts (not needed for deployment)
+test_*.py
+evaluate_*.py
+monitor_*.py
+*_parallel.py
+*_kfold*.py
+analyze_*.py
+debug_*.py
+regenerate_*.py
+api_realtime.py
+llm_interface.py
+
+# Evaluation results (if too large)
+results/
+evaluation_results/
+kfold_results/
+*_results.json
+*_metrics.json
+
+# Temporary test files
+test_output/
+scratch/
+temp/
+
+# Node modules (if any frontend build tools)
+node_modules/
+package-lock.json
+yarn.lock
+
+# ========================================
+# SECURITY - DOUBLE CHECK
+# ========================================
+# Any file with 'secret', 'private', or 'key' in name
+*secret*
+*private*
+*credential*

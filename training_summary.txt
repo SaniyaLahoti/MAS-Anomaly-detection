@@ -1,0 +1,53 @@
+================================================================================
+MULTI-AGENT TRAINING SUMMARY
+================================================================================
+
+agent_1_xgboost_v1:
+  Model Path: ./trained_models/agent_1_xgboost_v1.pkl
+  Accuracy:   0.9880
+  Precision:  0.9888
+  Recall:     0.9991
+  F1-Score:   0.9939
+
+agent_2_xgboost_v2:
+  Model Path: ./trained_models/agent_2_xgboost_v2.pkl
+  Accuracy:   0.9998
+  Precision:  0.9999
+  Recall:     0.9998
+  F1-Score:   0.9999
+
+agent_3_lstm_v1:
+  Model Path: ./trained_models/agent_3_lstm_v1.pkl
+  Accuracy:   0.9863
+  Precision:  0.9864
+  Recall:     0.9998
+  F1-Score:   0.9930
+
+agent_4_lstm_v2:
+  Model Path: ./trained_models/agent_4_lstm_v2.pkl
+  Accuracy:   0.9962
+  Precision:  0.9962
+  Recall:     1.0000
+  F1-Score:   0.9981
+
+agent_5_rf_v1:
+  Model Path: ./trained_models/agent_5_rf_v1.pkl
+  Accuracy:   0.9881
+  Precision:  0.9889
+  Recall:     0.9991
+  F1-Score:   0.9940
+
+agent_6_rf_v2:
+  Model Path: ./trained_models/agent_6_rf_v2.pkl
+  Accuracy:   0.9997
+  Precision:  0.9999
+  Recall:     0.9998
+  F1-Score:   0.9999
+
+agent_7_unknown:
+  Model Path: ./trained_models/agent_7_unknown.pkl
+  Accuracy:   0.1903
+  Precision:  0.9931
+  Recall:     0.1723
+  F1-Score:   0.2937
+

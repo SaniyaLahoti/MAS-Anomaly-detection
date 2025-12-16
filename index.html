@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Network Anomaly Detection - Real-time Monitoring</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-shield-alt"></i> Multi-Agent Network Anomaly Detection</h1>
+                <div class="system-status">
+                    <span class="status-indicator" id="systemStatus">
+                        <i class="fas fa-circle"></i> System Online
+                    </span>
+                    <span class="agent-info">XGBoost • LSTM • Ensemble • SHAP • LLM</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel -->
+            <div class="left-panel">
+                <!-- Quick Presets -->
+                <section class="card">
+                    <h2><i class="fas fa-bolt"></i> Quick Presets</h2>
+                    <div class="presets-grid">
+                        <button class="preset-btn" onclick="loadPreset('benign')">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Benign Traffic</span>
+                            <small>Normal network flow</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('ddos')">
+                            <i class="fas fa-bomb"></i>
+                            <span>DDoS Attack</span>
+                            <small>Flood of packets</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('port_scan')">
+                            <i class="fas fa-search"></i>
+                            <span>Port Scan</span>
+                            <small>Network reconnaissance</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('data_theft')">
+                            <i class="fas fa-user-secret"></i>
+                            <span>Data Theft</span>
+                            <small>Data exfiltration</small>
+                        </button>
+                        <!-- V2 Attack Types -->
+                        <button class="preset-btn" onclick="loadPreset('injection')"
+                            style="background: linear-gradient(135deg, #9333ea, #7c3aed);">
+                            <i class="fas fa-syringe"></i>
+                            <span>Injection</span>
+                            <small>SQL/Command injection</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('backdoor')"
+                            style="background: linear-gradient(135deg, #dc2626, #b91c1c);">
+                            <i class="fas fa-door-open"></i>
+                            <span>Backdoor</span>
+                            <small>Unauthorized access</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('password')"
+                            style="background: linear-gradient(135deg, #ea580c, #c2410c);">
+                            <i class="fas fa-key"></i>
+                            <span>Password</span>
+                            <small>Brute force attack</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('xss')"
+                            style="background: linear-gradient(135deg, #0891b2, #0e7490);">
+                            <i class="fas fa-code"></i>
+                            <span>XSS</span>
+                            <small>Cross-site scripting</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('mitm')"
+                            style="background: linear-gradient(135deg, #4f46e5, #4338ca);">
+                            <i class="fas fa-user-ninja"></i>
+                            <span>MITM</span>
+                            <small>Man-in-the-middle</small>
+                        </button>
+                        <button class="preset-btn" onclick="loadPreset('ransomware')"
+                            style="background: linear-gradient(135deg, #be123c, #9f1239);">
+                            <i class="fas fa-lock"></i>
+                            <span>Ransomware</span>
+                            <small>Encryption attack</small>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Network Flow Parameters -->
+                <section class="card">
+                    <h2><i class="fas fa-network-wired"></i> Network Flow Parameters</h2>
+                    <div class="parameters-grid">
+                        <div class="param-group">
+                            <label>PROTOCOL</label>
+                            <input type="number" id="protocol" value="6" step="any">
+                        </div>
+                        <div class="param-group">
+                            <label>L7_PROTOCOL</label>
+                            <input type="number" id="l7_proto" value="7" step="any">
+                        </div>
+                        <div class="param-group">
+                            <label>SOURCE_PORT</label>
+                            <input type="number" id="src_port" value="50235" min="0" max="65535" step="any">
+                        </div>
+                        <div class="param-group">
+                            <label>DESTINATION_PORT</label>
+                            <input type="number" id="dst_port" value="80" min="0" max="65535" step="any">
+                        </div>
+                        <div class="param-group">
+                            <label>INCOMING_BYTES</label>
+                            <input type="number" id="in_bytes" value="1000" step="any">
+                        </div>
+                        <div class="param-group">
+                            <label>OUTGOING_BYTES</label>
+                            <input type="number" id="out_bytes" value="710" step="any">
+                        </div>
+                        <div class="param-group">
+                            <label>INCOMING_PACKETS</label>
+                            <input type="number" id="in_pkts" value="5" step="any">
+                        </div>
+                        <div class="param-group">
+                            <label>OUTGOING_PACKETS</label>
+                            <input type="number" id="out_pkts" value="4" step="any">
+                        </div>
+                        <div class="param-group">
+                            <label>TCP_FLAGS</label>
+                            <input type="number" id="tcp_flags" value="27" step="any">
+                        </div>
+                        <div class="param-group">
+                            <label>FLOW_DURATION (MS)</label>
+                            <input type="number" id="flow_duration" value="4294872" step="any">
+                        </div>
+                    </div>
+                    <button class="analyze-btn" onclick="analyzeFlow()">
+                        <i class="fas fa-search-plus"></i> ANALYZE WITH MULTI-AGENT SYSTEM
+                    </button>
+                </section>
+
+                <!-- Real-time Monitoring Controls -->
+                <section class="card">
+                    <h2><i class="fas fa-play-circle"></i> Real-time Monitoring</h2>
+                    <div class="monitoring-controls">
+                        <button class="control-btn start-btn" id="startMonitoring" onclick="startMonitoring()">
+                            <i class="fas fa-play"></i> Start Monitoring
+                        </button>
+                        <button class="control-btn stop-btn" id="stopMonitoring" onclick="stopMonitoring()" disabled>
+                            <i class="fas fa-stop"></i> Stop Monitoring
+                        </button>
+                        <div class="monitoring-stats">
+                            <div class="stat">
+                                <span class="stat-label">Samples Processed:</span>
+                                <span class="stat-value" id="samplesProcessed">0</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Anomalies Detected:</span>
+                                <span class="stat-value anomaly" id="anomaliesDetected">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <!-- Detection Result -->
+                <section class="card result-card" id="resultCard" style="display: none;">
+                    <h2><i class="fas fa-chart-line"></i> Detection Result</h2>
+                    <div class="result-content">
+                        <div class="prediction-badge" id="predictionBadge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span id="predictionText">BENIGN</span>
+                        </div>
+                        <div class="confidence-meter">
+                            <label>Confidence Level</label>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" id="confidenceFill"></div>
+                            </div>
+                            <span class="confidence-value" id="confidenceValue">0%</span>
+                        </div>
+                        <div class="agent-participation">
+                            <div class="agents-active">
+                                <h3>Participating Agents</h3>
+                                <div id="participatingAgents" class="agent-list"></div>
+                            </div>
+                            <div class="agents-abstain">
+                                <h3>Abstaining Agents</h3>
+                                <div id="abstainingAgents" class="agent-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SHAP Explanation -->
+                <section class="card explanation-card" id="explanationCard" style="display: none;">
+                    <h2><i class="fas fa-robot"></i> Agent Explanation</h2>
+                    <div class="explanation-content" id="explanationContent"></div>
+                    <p class="normalization-note"
+                        style="font-size: 0.8em; color: #666; margin-top: 10px; font-style: italic;">
+                        <i class="fas fa-info-circle"></i> Note: Feature values shown (e.g., 0.034) are
+                        <strong>normalized scores (0-1)</strong> used by the AI models, not raw counts.
+                    </p>
+                </section>
+
+                <!-- Analyst Recommendations -->
+                <section class="card recommendations-card" id="recommendationsCard" style="display: none;">
+                    <h2><i class="fas fa-clipboard-list"></i> Analyst Recommendations</h2>
+                    <div class="recommendations-content">
+                        <div class="severity-badge" id="severityBadge"></div>
+                        <p class="attack-description" id="attackDescription"></p>
+
+                        <div class="recommendation-section">
+                            <h3><i class="fas fa-exclamation-circle"></i> Immediate Actions</h3>
+                            <ul id="immediateActions"></ul>
+                        </div>
+
+                        <div class="recommendation-section">
+                            <h3><i class="fas fa-search"></i> Investigation Steps</h3>
+                            <ul id="investigationSteps"></ul>
+                        </div>
+
+                        <div class="recommendation-section">
+                            <h3><i class="fas fa-shield-alt"></i> Mitigation Steps</h3>
+                            <ul id="mitigationSteps"></ul>
+                        </div>
+
+                        <div class="recommendation-section">
+                            <h3><i class="fas fa-lock"></i> Prevention Measures</h3>
+                            <ul id="preventionMeasures"></ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LLM Q&A Interface -->
+                <section class="card qa-card">
+                    <h2><i class="fas fa-comments"></i> Ask Questions About Detection</h2>
+                    <div class="qa-content">
+                        <p class="qa-hint">Ask the AI about why predictions were made, what features mattered most, or
+                            what actions to take.</p>
+                        <div class="chat-container" id="chatContainer">
+                            <div class="chat-message assistant">
+                                <i class="fas fa-robot"></i>
+                                <div class="message-content">
+                                    <p>Hello! I'm here to help you understand the anomaly detection results. You can ask
+                                        me questions like:</p>
+                                    <ul>
+                                        <li>"Why was this detected as an anomaly?"</li>
+                                        <li>"Which agents participated?"</li>
+                                        <li>"What should I do about this?"</li>
+                                        <li>"Could this be a false positive?"</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qa-input">
+                            <input type="text" id="questionInput" placeholder="Type your question here..."
+                                onkeypress="handleQuestionKeypress(event)">
+                            <button onclick="askQuestion()"><i class="fas fa-paper-plane"></i> Send</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Real-time Chart -->
+                <section class="card chart-card">
+                    <h2><i class="fas fa-chart-area"></i> Real-time Detection Timeline</h2>
+                    <canvas id="realtimeChart"></canvas>
+                </section>
+
+                <!-- LLM Q&A Interface -->
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js?v=2"></script>
+</body>
+
+</html>
