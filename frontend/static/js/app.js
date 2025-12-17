@@ -1,6 +1,6 @@
 // Real-time Anomaly Detection Dashboard - JavaScript
 
-const API_BASE = 'http://localhost:8000';
+const API_BASE = window.location.origin;
 let monitoringActive = false;
 let monitoringInterval = null;
 let websocket = null;
