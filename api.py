@@ -531,3 +531,16 @@ def start_api_server(host: str = "0.0.0.0", port: int = 8000):
 
 if __name__ == "__main__":
     start_api_server()
+
+# Serve frontend
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import os
+
+# Mount static files
+app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
+
+# Serve index.html at root
+@app.get("/")
+async def read_root():
+    return FileResponse("frontend/index.html")
