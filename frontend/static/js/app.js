@@ -272,7 +272,7 @@ function displayResult(result) {
     const predictionText = document.getElementById('predictionText');
 
     // Use actual attack type if available
-    const displayText = result.predicted_attack_type || result.prediction;
+    const displayText = result.detected_attack_type || result.prediction;
     predictionText.textContent = displayText.toUpperCase();
     predictionBadge.className = 'prediction-badge ' +
         (result.prediction === 'benign' || displayText === 'Benign' ? 'benign' : 'anomaly');
@@ -294,38 +294,33 @@ function displayResult(result) {
         `<div class="agent-badge">${agent}</div>`
     ).join('');
 
-    // Update explanation - handle both string and object formats
+    // Update explanation - ONLY show LLM interpretation
     const explanationContent = document.getElementById('explanationContent');
-    if (result.explanation && typeof result.explanation === 'object') {
-        const exp = result.explanation;
-        let html = '<h4 style="margin-bottom: 15px; color: #60a5fa;">Key Features Driving Prediction:</h4>';
-        if (exp.top_features && exp.top_features.length > 0) {
-            html += '<div class="shap-features">';
-            for (const feat of exp.top_features) {
-                const barWidth = Math.min(feat.importance * 500, 100); // Scale importance to bar width
-                html += `
-                    <div class="shap-feature-item" style="margin-bottom: 10px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                            <span style="font-weight: 600; color: #e2e8f0;">${feat.feature}</span>
-                            <span style="color: #94a3b8;">${feat.importance.toFixed(4)}</span>
-                        </div>
-                        <div style="background: #1e293b; border-radius: 4px; height: 8px; overflow: hidden;">
-                            <div style="background: linear-gradient(90deg, #3b82f6, #8b5cf6); width: ${barWidth}%; height: 100%; border-radius: 4px;"></div>
-                        </div>
-                    </div>`;
-            }
-            html += '</div>';
+    let explanationObj = result.explanation;
+    
+    // If explanation is a JSON string, parse it
+    if (typeof explanationObj === 'string') {
+        try {
+            explanationObj = JSON.parse(explanationObj);
+        } catch (e) {
+            // Plain text explanation - format it nicely
+            explanationContent.innerHTML = `<div style="color: #e2e8f0; line-height: 1.8; white-space: pre-wrap; max-height: 400px; overflow-y: auto;">${explanationObj.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #60a5fa;">$1</strong>')}</div>`;
+            return;
         }
-        if (exp.summary) {
-            html += `<p style="margin-top: 15px; color: #94a3b8; font-size: 0.9em;">${exp.summary.replace(/\n/g, '<br>')}</p>`;
-        }
-        explanationContent.innerHTML = html;
-    } else if (typeof result.explanation === 'string') {
-        explanationContent.innerHTML = `<pre style="white-space: pre-wrap; line-height: 1.6;">${result.explanation}</pre>`;
-    } else {
-        explanationContent.innerHTML = '<p>No explanation available</p>';
     }
-
+    
+    // Show ONLY the LLM interpretation if available
+    if (explanationObj && typeof explanationObj === 'object') {
+        if (explanationObj.llm_interpretation) {
+            // ONLY show LLM-generated text, formatted nicely with scroll
+            explanationContent.innerHTML = `<div style="color: #e2e8f0; line-height: 1.8; white-space: pre-wrap; max-height: 400px; overflow-y: auto; padding-right: 10px;">${explanationObj.llm_interpretation.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #60a5fa;">$1</strong>').replace(/🔍/g, '🔍').replace(/✅/g, '✅').replace(/🚨/g, '🚨').replace(/📊/g, '📊')}</div>`;
+        } else {
+            // Fallback if no LLM interpretation
+            explanationContent.innerHTML = '<p style="color: #94a3b8;">Generating explanation...</p>';
+        }
+    } else {
+        explanationContent.innerHTML = '<p style="color: #94a3b8;">No explanation available</p>';
+    }
     // Update recommendations
     if (result.recommendations) {
         displayRecommendations(result.recommendations);
